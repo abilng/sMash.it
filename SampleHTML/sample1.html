@@ -1,0 +1,73 @@
+<html lang="en-us" style="height: 100%;"><head>
+<meta charset="windows-1252"/>
+<title>W3Schools Online Web Tutorials</title>
+</head>
+<script type="text/javascript" src="html_gen_php/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="tojson2.js"></script>
+<body style="position: relative; min-height: 100%; top: 0px;">
+<div class="hresource">
+  <h1 class="name">User</h1>
+  URL:
+  <span class="url">
+    http://example.com/api/user
+  </span>
+  <p class="comment">
+    api desc(Human Readable) It is a <a rel="hresource-is-a" href="http://dublincore.org/user/">user</a>
+  </p>
+  <ol>
+    <li>
+      <code class="attribute required write-once queryable">
+        username
+      </code> -<span class="comment">username -required, must be unique.</span>
+    </li>
+    <li>
+      <code class="attribute required">
+        password
+      </code> -<span class="comment"> required.</span>
+    </li>
+    <li>
+      <code class="attribute required queryable">email</code> - <span class="comment"> email address of the user.</span>
+    </li>
+    <li>
+      <code class="attribute queryable">country</code>(<span class="hresource-datatype">string</span>)
+      <div>
+        Producers:
+        <ul>
+          <li><a rel="hresource-produced-by" href="http://xyz.com/cn#country">cn</a></li>
+          <li><a rel="hresource-produced-by" href="http://abc.com/getcountry#country">getcountry</a></li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <code class="attribute read-only">ip_address</code>(<span class="hresource-datatype">string</span>)
+      <p>Consumers:</p>
+          <a rel="hresource-consumed-by" href="http://bookshop.com/book-order#ip_addr">book-order</a>
+          <a rel="hresource-consumed-by" href="http://library.com/rented-book#ip">rented-book</a>
+    </li>
+  </ol>
+</div>
+<div class="hresource">
+  <h1 class="name">test</h1>
+  URL:
+  <span class="url">
+    http://example.com/api/test
+  </span>
+  <p class="comment">
+    Test api
+  </p>
+  <ol>
+    <li>
+      <code class="attribute required">
+        str
+      </code> -<span class="comment">any <span class="hresource-datatype">string</span>.</span>
+    </li>
+  </ol>
+  <p>ERRORCODE</p>
+  <ol>
+    <li class="hresource-error">
+      <code class="error-code">201</code> -<span class="comment">test failed</span>
+  </ol>
+</div>
+
+</body>
+</html>

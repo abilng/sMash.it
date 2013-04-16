@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	body {
+		font-family: Arial,sans-serif;color: #222;line-height: 1.67;
+		background-color: #fff;overflow-y: scroll;min-width: 1000px;
+	}
+	table {
+		border: 1px solid #bbb;border-spacing: 0;
+		border-collapse: collapse;margin: 0 0 1.5em;
+	}
+	table th {
+		background: #6199df;
+		color: #FFF;border: 1px solid #4d90fe;
+	}
+	pre, code, tt {
+		font: 1em "Droid Sans Mono",monospace;
+		line-height: 1.5;color: #007000;
+	}
+	pre {
+		padding: 6px 10px;background-color: #FAFAFA;
+		border: 1px solid #bbb;overflow: auto;
+	}
+	h1{
+		font-size: 2em;padding-bottom: 4px;border-bottom: 1px solid #ccc;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="hresource" style="margin-left: 176px;margin-right: 50px;">
+		<h1>Discover supported <span class="name">languages</span></h1>
+		<p class="comment" >You can discover the supported languages of this API by sending an HTTP GET request to its URI.<p> 
+		The URI for a request is:
+		<pre class="uri">https://www.googleapis.com/language/translate/v2/languages</pre>
+		<h4>parameters</h4>
+		<table border="1">
+  		<thead>
+    		<tr><th>Parameter</th><th>Meaning</th><th>Notes</th></tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td class="attribute" ><code>callback</code></td>
+    			<td class="comment" >A JavaScript function to run when the response is received</td>
+    			<td>
+    				<ul>
+    				<li>This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations. </li>
+    				<li>Embed the API query in <code>&lt;script&gt;</code> tags.</li> 
+    				<li>Define the callback function in <code>&lt;script&gt;</code> tags. </li>
+    				<li>See <a href="https://developers.google.com/translate/v2/getting_started#JSONP">REST from JavaScript</a> in the Getting Started document for an example. </li>
+    				</ul>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td id="supported-key" class="attribute required guid" ><code>key</code></td>
+    			<td  class="comment">Your API key</td>
+    			<td>
+    				<ul>
+    					<li>This API requires a valid key for all requests</li>
+    					<li>Get a key from the <a href="https://developers.google.com/apis/console">Google APIs console</a>.</li>
+    				</ul>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td id="supported-prettyprint" class="attribute queryable"><code>prettyprint</code></td>
+    			<td class="comment" >Returns a response with indentations and line breaks</td>
+    			<td>
+    				<ul>
+    					<li>If&nbsp;<code>prettyprint=true</code>,&nbsp;the results returned by the server will be human readable (pretty printed).</li>
+    					<li>Default:&nbsp;<code>prettyprint=true</code>.</li>
+    				</ul>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td id="supported-target" class="attribute queryable"><code>target</code></td>
+    			<td>Target language</td>
+    			<td class="comment">
+    				<ul>
+    					<li>The language of the language name and sorting order.</li>
+    					<li>If a language is not specified, the system will not return the language name and the sorting order will based on the language code.</li>
+    				</ul>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td id="lan" class="attribute read-only multiple"><code>language</code></td>
+    			<td class="comment">Supported languages code</td>
+    			<td>
+    				<ul>used by:
+    					<li><a rel="hresource-consumed-by" href="docurl1#target">translate</a>-Target language</li>
+    					<li><a rel="hresource-consumed-by" href="docurl1#source">translate</a>-Source language</li>
+    				</ul>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td id="name" class="attribute read-only multiple"><code>name</code></td>
+    			<td class="comment">Supported languages name</td>
+    			<td></td>
+    		</tr>
+    	</tbody>
+    	</table>
+	</div>
+</body>
+<html>
