@@ -1,0 +1,147 @@
+body {
+	color: #333;
+	font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+	width: 850px;
+	margin-left:auto;
+	margin-right:auto;
+}
+ol,ul {
+	padding: 0px;
+}
+a{
+	font-style: italic;
+	color: rgb(182, 83, 213);
+}
+.hresource {
+	margin: 15px 0;
+	border: 1px solid #CCC;
+	border-top: 0;
+	padding-bottom: 12px;
+	border-radius: 5px;
+}
+.hresource .name{
+	background: #333;
+	border: 1px solid #111;
+	padding: 8px 15px;
+	font-size: 16px;
+	color: white;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+	letter-spacing: 0;
+	border-radius: 5px 5px 0 0;
+	font-weight: normal;
+	margin-bottom: 0;
+	overflow: hidden;
+}
+.hresource p{
+	margin-left: 15px;
+	margin-right: 15px
+}
+.hresource pre{
+	margin-left: 15px;
+	margin-right: 15px
+}
+.read-only{
+
+}
+.write-once{
+
+}
+.url,.uri,.hresource-opformat{
+	margin-left: 40px;
+	font-family: "source-code-pro", Consolas, monospace !important;
+	word-spacing: 0;
+	font-style: italic
+}
+
+.comment{
+
+}
+.required{
+
+}
+.queryable{
+
+}
+.guid{
+	
+}
+
+
+#attributes {
+	background: #eee;
+	border: 1px solid #ccc;
+	margin: 0 auto 15px;
+	max-width: 750px;
+	border-radius: 3px;
+	color: #333;
+	text-shadow: 0 1px 0 #fff;
+}
+
+#attributes li {
+	list-style: none;
+	background: none;
+	margin: 0;
+	padding: 10px;
+	padding-bottom: 0px;
+}
+
+.attribute {
+	font-size: 16px;
+	letter-spacing: 0;
+	padding: 8px 10px;
+	margin: -10px -10px 0;
+	color: #fff;
+	text-shadow: 0 1px 0 #444;
+	background: #25649F;
+	display: block;
+}
+.hresource-datatype{
+	float: right;
+	color: #fff;
+	text-shadow: 0 1px 0 #444;
+	font-size: 14px;
+	margin-top: -30px;
+}
+#properties,#producers,#consumers {
+	padding: 7px;
+	margin-top: -30px;
+	clear: none;
+
+}
+#properties li,#producers li,#consumers li{
+	margin-left: 10px;
+	display: inline-block;
+}
+#properties a,#producers a,#consumers a {
+	text-decoration:none;
+}
+#properties-explain {
+	padding: 30px;
+	background: #eee;
+	border: 1px solid #ccc;
+	margin: 0 auto 30px;
+	max-width: 850px;
+	border-radius: 3px;
+	color: #333;
+	text-shadow: 0 1px 0 #fff;
+
+}
+
+#errortable {
+	margin-left: 50px;
+	max-width: 750px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 0px;
+}
+
+#errortable .comment {
+	width: 650px;
+	background: rgb(236, 236, 236);
+}
+#errortable .error-code {
+	color: rgb(255, 255, 255);
+	background: rgb(167, 18, 5);
+	width: 100px;
+	text-align: center;
+}

@@ -1,0 +1,106 @@
+{
+    "hresource": "1.0", 
+    "baseurl": "http://sample-rest/api/", 
+    "doc-url": "http://sample-rest/doc/sample1", 
+    "apis": [
+        {
+            "name": "User", 
+            "uri": "http://sample-rest/api/user", 
+            "is-a": {
+                "doc-url": "http://sample-rest/type/user/", 
+                "name": "user"
+            }, 
+            "description": "api desc(Human Readable)", 
+            "output-format": "json", 
+            "attributes": [
+                {
+                    "name": "username", 
+                    "read-only": false, 
+                    "write-once": true, 
+                    "required": true, 
+                    "queryable": true, 
+                    "guid": false, 
+                    "type": null, 
+                    "description": "username -required, must be unique.", 
+                    "consumed-by": [], 
+                    "producered-by": []
+                }, 
+                {
+                    "name": "password", 
+                    "read-only": false, 
+                    "write-once": false, 
+                    "required": true, 
+                    "queryable": false, 
+                    "guid": false, 
+                    "type": null, 
+                    "description": "password  -required.", 
+                    "consumed-by": [], 
+                    "producered-by": []
+                }, 
+                {
+                    "name": "email", 
+                    "read-only": false, 
+                    "write-once": false, 
+                    "required": true, 
+                    "queryable": true, 
+                    "guid": false, 
+                    "type": null, 
+                    "description": "email address of the user.", 
+                    "consumed-by": [], 
+                    "producered-by": []
+                }, 
+                {
+                    "name": "country", 
+                    "read-only": false, 
+                    "write-once": false, 
+                    "required": false, 
+                    "queryable": true, 
+                    "guid": false, 
+                    "type": "string", 
+                    "description": "", 
+                    "consumed-by": [], 
+                    "producered-by": [
+                        {
+                            "attribute": "country", 
+                            "api": "cn", 
+                            "doc-url": "http://sample-rest/doc/cn"
+                        }, 
+                        {
+                            "attribute": "country", 
+                            "api": "getcountry", 
+                            "doc-url": "http://sample-rest/doc/getcountry"
+                        }
+                    ]
+                }
+            ], 
+            "errors": null
+        }, 
+        {
+            "name": "testAPI2", 
+            "uri": "http://sample-rest/api/testAPI2", 
+            "is-a": null, 
+            "description": "Test api-Do nothing", 
+            "output-format": "json", 
+            "attributes": [
+                {
+                    "name": "str", 
+                    "read-only": false, 
+                    "write-once": false, 
+                    "required": true, 
+                    "queryable": false, 
+                    "guid": false, 
+                    "type": "string", 
+                    "description": "any string.", 
+                    "consumed-by": [], 
+                    "producered-by": []
+                }
+            ], 
+            "errors": [
+                {
+                    "comment": "test failed", 
+                    "code": "201"
+                }
+            ]
+        }
+    ]
+}
