@@ -14,4 +14,4 @@ Following annotations are proposed for describing resources in a RESTful API.
 * queryable: Indicates an attribute that may be provided in the HTTP querystring during a GET operation to filter the results. This annotation is always used along with the attribute annotation. 
 * read-only: Indicates a read-only attribute. A read-only attribute may be retrieved during a GET operation but may not be included in a POST or a PUT. This annotation is always used along with the attribute annotation. 
 * write-once: Indicates a write-once attribute that can be specified only during the create operation (POST) but not during update (PUT). This annotation is always used along with the attribute annotation. 
-1* guid: Indicates if an attribute is a globally unique identifier for the resource that could be used across multiple services.
+* guid: Indicates if an attribute is a globally unique identifier for the resource that could be used across multiple services.
