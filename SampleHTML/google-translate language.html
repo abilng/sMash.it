@@ -1,6 +1,8 @@
 <html>
 <head>
-	<title></title>
+    <link rel="shortcut icon" href="https://developers.google.com/_static/images/favicon.ico">
+    <link rel='hresource-documentation' type="text/html"/>
+	<title>Using REST - Google Translate API — Google Developers</title>
 	<style type="text/css">
 	body {
 		font-family: Arial,sans-serif;color: #222;line-height: 1.67;
@@ -83,19 +85,25 @@
     			</td>
     		</tr>
     		<tr>
-    			<td id="lan" class="attribute read-only multiple"><code>language</code></td>
+    			<td id="language" class="attribute read-only multiple required"><code>language</code></td>
     			<td class="comment">Supported languages code</td>
     			<td>
-    				<ul>used by:
-    					<li><a rel="hresource-consumed-by" href="docurl1#target">translate</a>-Target language</li>
-    					<li><a rel="hresource-consumed-by" href="docurl1#source">translate</a>-Source language</li>
+    				<ul>
+                        <li>Read only Parameter</li>
+                        used by:
+    					<li><a rel="hresource-consumed-by" href="google-translate.html#target">translate</a>-Target language</li>
+    					<li><a rel="hresource-consumed-by" href="google-translate.html#source">translate</a>-Source language</li>
     				</ul>
     			</td>
     		</tr>
     		<tr>
     			<td id="name" class="attribute read-only multiple"><code>name</code></td>
     			<td class="comment">Supported languages name</td>
-    			<td></td>
+    			<td>
+                    <ul>
+                        <li>Read only Parameter</li>
+                    </ul>
+                </td>
     		</tr>
     	</tbody>
     	</table>
