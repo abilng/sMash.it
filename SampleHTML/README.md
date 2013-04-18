@@ -42,6 +42,7 @@ Following annotations are used for describing resources in a RESTful API.
 
 > * Integer or Int 
 > * String
+> * Float
 > * Int64
 >>> 64 bit integer. 
 > * Range
