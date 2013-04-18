@@ -46,13 +46,16 @@ Following annotations are used for describing resources in a RESTful API.
 > * Int64
 
 >>> 64 bit integer. 
+
 > * Range
 
 >>> eg: ` Range(0.0,1.0) ` specifies floating point number between 0 and 1 and ` Range(0,1) ` specifies integer between 0 and 1.
+
 > * Boolean or Bool
 > * Date or Time
 
 >>> should specify date formatting.
+
 > * Timestamp
 
 * **_hresource-error_**
