@@ -59,7 +59,8 @@ Following annotations are used for describing resources in a RESTful API.
 > * Timestamp
 
 * **_hresource-error_**
-> This is the root annotation that marks the error listing.It should contain two sub-annotation **_error-code_** and **_comment_** whic speicify error code and description of error respectively.
+
+>> This is the root annotation that marks the error listing.It should contain two sub-annotation **_error-code_** and **_comment_** whic speicify error code and description of error respectively.
 
 ~~~~HTML
 <li class="hresource-error">
@@ -67,21 +68,19 @@ Following annotations are used for describing resources in a RESTful API.
 ~~~~ 
 
 
+
 The following annotations for inter-links between services are defined to enable discovery: 
 
 * **Link to Superclass**
-
 > When a resource is a subclass of another resource, this link is indicated by the rel attribute `hresource-is-a`. This implies that wherever the superclass is accepted, the subclass is also accepted. 
-
->> `eg: <a rel="hresource-is-a" href="http://dublincore.org/book/"> Book </a>` 
+`eg: <a rel="hresource-is-a" href="http://dublincore.org/book/"> Book </a>` 
 
 * **Link to Consumers**
-
-> When an attribute of a service is consumed by another known service, this is annotated using a rel attribute `hresource-consumed-by`. This enables a software agent to find out what all can be done with the resource that it has already retrieved.
-
->> `<a rel="hresource-consumed-by" href="documentaion_url#attribute">api_name</a>`
+> When an attribute of a service is consumed by another known service, this is annotated using a rel attribute `hresource-consumed-by`. This enables a software agent to find out what all can be done with the resource that it has already retrieved. `<a rel="hresource-consumed-by" href="documentaion_url#attribute">api_name</a>`
 
 * **Link to Producers**
-
-> Similar to the link to consumers, services can annotate a link to a producer of one of its attributes. This helps reverse traversal of resources and also  makes the system more peer-to-peer. This way, a link needs to be provided in either at one of the consumers or at the provider and an agent can identify this with link traversal. The annotation is made with the rel attribute `hresource-produced-by`.
+> Similar to the link to consumers, services can annotate a link to a producer of one of its attributes. This 
+helps reverse traversal of resources and also  makes the system more peer-to-peer. This way, a link needs
+to be provided in either at one of the consumers or at the provider and an agent can identify this with link 
+traversal. The annotation is made with the rel attribute `hresource-produced-by`.
 
