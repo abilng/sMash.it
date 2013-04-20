@@ -28,9 +28,9 @@ var endpointOptions = {
     endpointStyles:[
         { gradient : { stops:[[0, w23Stroke], [1, "#558822"]] }},
         { gradient : {stops:[[0, w23Stroke], [1, "#882255"]] }}], 
-    paintStyle:{ fillStyle: targetColor, lineWidth:8, strokeStyle:w23Stroke, outlineColor:"#000000", outlineWidth:1}, //Line color
+    paintStyle:{ fillStyle: targetColor, lineWidth:5, strokeStyle:w23Stroke, outlineColor:"#000000", outlineWidth:1}, //Line color
     isSource: true, //Starting point of the connector
-    connectorStyle: { strokeStyle: targetColor, lineWidth: 8, outlineColor:"#000000", outlineWidth:1 }, 
+    connectorStyle: { strokeStyle: targetColor, lineWidth: 5, outlineColor:"#000000", outlineWidth:1 }, 
     maxConnections: -1,
     dropOptions: {
         activeClass: 'dragActive'
