@@ -22,6 +22,9 @@ Following annotations are used for describing resources in a RESTful API.
 * **_comment_**
 > Provides a human-readable description of the attribute.
 
+* **_method_**
+> Annotates Permissiable methods (GET,POST,PUT,DELETE)
+
 * **_required_**
 > Indicates a required attribute. This annotation is always used along with the attribute annotation. 
 
