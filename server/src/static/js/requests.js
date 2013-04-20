@@ -14,6 +14,7 @@ $(document).ready(function(){
 				$.getJSON(base_url+'/parse?url=' + url, function(data) {
 					docjsons.push(data);
 					docurls.push(url);
+					addSideBar("test",data);
 				});
 			}
     	}
@@ -21,3 +22,21 @@ $(document).ready(function(){
 	});
 
 });
+
+function addSideBar (name,json) {
+	var heading = $("<h3>").text(name)
+    var div= $("<div style='padding:0px'>")
+    for (var i = json.apis.length - 1; i >= 0; i--) {
+    	var button = $("<button class='mybutton'>").text(json.apis[i].name);
+    	button.draggable({cancel:false, 
+    								revert:false, 
+    								appendTo: "#editorcontainer", 
+    								helper:'clone',
+    								zIndex: 25,
+    								scroll:false,
+    								start:function(e,ui){$(ui.helper).addClass("ui-draggable-helper");} });
+    	div.append(button);
+    };
+    $("#accordion").append(heading,div);
+    $("#accordion").accordion("refresh");
+}
