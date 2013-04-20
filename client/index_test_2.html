@@ -10,9 +10,11 @@
 		<script type="text/javascript" src="libs/bootstrap.min.js"></script>
 		<script type="text/javascript" src="libs/jquery-1.9.0.min.js"></script>
 		<script type="text/javascript" src="libs/jquery-ui-1.10.2.custom.min.js"></script>
-    <script type="text/javascript" src="js/helperscripts.js"></script>
 		<script>
-			$(document).ready(init);  
+			$(document).ready(function() {$( "#accordion" ).accordion({heightStyle: "content",collapsible: "true"});
+            $('button.mybutton').draggable({cancel:false, revert:false, appendTo: "#editorcontainer", helper:'clone',zIndex: 25,scroll:false,start:function(e,ui){$(ui.helper).addClass("ui-draggable-helper");} });
+            $('div.workbench').droppable({accept: 'button.mybutton', drop: function(ev,ui){ var pos=$(ui.helper).position();$(this).find("p").html("dropped "+ parseInt(pos.left) + parseInt(pos.top));}});
+            });  
 		</script>
 	</head>	
 
@@ -45,8 +47,8 @@
              		<div>testing..</div>
      			</div>
      		</div>
-     		<div class="workbench span9" id="wbench" style="position: absolute; left: auto; top:50px; right: 5px; height: 500%; width:1140px;">
-           
+     		<div class="workbench span9" style="position: absolute; left: auto; top:50px; right: 5px; height: 500%; width:1140px;">
+           <p>hellp</p>
      		</div>
      	</div>
 	</body>
