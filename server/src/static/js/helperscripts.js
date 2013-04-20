@@ -33,5 +33,7 @@ function insertDiv(element,pos){
 
 function closeWidget(){
 	//$(this).parentNode.parentNode.animate({opacity: 0});
-	alert("hi" + $(this).parents("div").parents("div").attr('id'));
+	//alert("hi" + $(this).parents("div").parents("div").attr('id'));
+	var ele = $(this).parents("div").parents("div").attr('id');
+	$("#"+ele).remove();
 }
