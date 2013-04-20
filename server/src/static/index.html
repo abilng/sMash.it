@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="libs/jquery-1.9.0.min.js"></script>
 		<script type="text/javascript" src="libs/jquery-ui-1.10.2.custom.min.js"></script>
     <script type="text/javascript" src="js/helperscripts.js"></script>
+    <script type="text/javascript" src="js/requests.js"></script>
 		<script>
 			$(document).ready(init);  
 		</script>
@@ -25,10 +26,10 @@
             		
           			</button>
           			<a class="brand" href="#">sMash.it</a>
-            		<form class="navbar-form pull-right">
-              			<input class="span7" type="text" placeholder="API Doc URL">
-              			<button type="submit" class="btn">Load it !!!</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-              			<button type="submit" class="btn">Generate >></button>
+            		<form class="navbar-form pull-right" action="#">
+              			<input class="span7" id="docurl" type="text" placeholder="API Doc URL">
+              			<button type="submit" id="api_load"  class="btn">Load it !!!</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              			<button type="submit" id="generate" class="btn">Generate >></button>
             		</form>    
         		</div>
       		</div>
