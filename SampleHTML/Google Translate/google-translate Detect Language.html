@@ -1,62 +1,61 @@
-<html>
-<head>
+<html><head>
     <link rel="shortcut icon" href="https://developers.google.com/_static/images/favicon.ico">
-    <link rel='hresource-documentation' type="text/html"/>
-	<title>Using REST - Google Translate API — Google Developers</title>
-	<style type="text/css">
-	body {
-		font-family: Arial,sans-serif;color: #222;line-height: 1.67;
-		background-color: #fff;overflow-y: scroll;min-width: 1000px;
-	}
-	table {
-		border: 1px solid #bbb;border-spacing: 0;
-		border-collapse: collapse;margin: 0 0 1.5em;
-	}
-	table th {
-		background: #6199df;
-		color: #FFF;border: 1px solid #4d90fe;
-	}
-	pre, code, tt {
-		font: 1em "Droid Sans Mono",monospace;
-		line-height: 1.5;color: #007000;
-	}
-	pre {
-		padding: 6px 10px;background-color: #FAFAFA;
-		border: 1px solid #bbb;overflow: auto;
-	}
-	h1{
-		font-size: 2em;padding-bottom: 4px;border-bottom: 1px solid #ccc;
-	}
+    <link rel="hresource-documentation" type="text/html">
+    <title>Using REST - Google Translate API â€” Google Developers</title>
+    <style type="text/css">
+    body {
+        font-family: Arial,sans-serif;color: #222;line-height: 1.67;
+        background-color: #fff;overflow-y: scroll;min-width: 1000px;
+    }
+    table {
+        border: 1px solid #bbb;border-spacing: 0;
+        border-collapse: collapse;margin: 0 0 1.5em;
+    }
+    table th {
+        background: #6199df;
+        color: #FFF;border: 1px solid #4d90fe;
+    }
+    pre, code, tt {
+        font: 1em "Droid Sans Mono",monospace;
+        line-height: 1.5;color: #007000;
+    }
+    pre {
+        padding: 6px 10px;background-color: #FAFAFA;
+        border: 1px solid #bbb;overflow: auto;
+    }
+    h1{
+        font-size: 2em;padding-bottom: 4px;border-bottom: 1px solid #ccc;
+    }
 
-	</style>
+    </style>
 </head>
 <body>
-	<div class="hresource" style="margin-left: 176px;margin-right: 50px;">
-		<h1>Detect Language<span class="name"></span> </h1>
-		<p class="comment" >You can detect the language of a text string by sending an HTTP GET request to its URI.</p>
+    <div class="hresource" style="margin-left: 176px;margin-right: 50px;">
+        <h1>Detect Language<span class="name"></span> </h1>
+        <p class="comment">You can detect the language of a text string by sending an HTTP GET request to its URI.</p>
         The URI for a request has the following format:
-		<pre class="uri">https://www.googleapis.com/language/translate/v2/detect</pre>
-		<h4>parameters</h4>
-		<table border="1">
-  		<thead>
-    		<tr><th>Parameter</th><th>Meaning</th><th>Notes</th></tr>
-    	</thead>
-    	<tbody>
-    		<tr>
-    			<td id="callback" class="attribute" ><code>callback</code></td>
-    			<td class="comment" >A JavaScript function to run when the response is received</td>
-    			<td>
-    				<ul>
-    				<li>This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations. </li>
-    				<li>Embed the API query in <code>&lt;script&gt;</code> tags.</li> 
-    				<li>Define the callback function in <code>&lt;script&gt;</code> tags. </li>
-    				<li>See <a href="https://developers.google.com/translate/v2/getting_started#JSONP">REST from JavaScript</a> in the Getting Started document for an example. </li>
-    				</ul>
-    			</td>
-    		</tr>
+        <pre class="uri">https://www.googleapis.com/language/translate/v2/detect</pre>
+        <h4>parameters</h4>
+        <table border="1">
+        <thead>
+            <tr><th>Parameter</th><th>Meaning</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
             <tr>
-                <td id="key" class="attribute required guid" ><code>key</code></td>
-                <td  class="comment">Your API key</td>
+                <td id="callback" class="attribute"><code>callback</code></td>
+                <td class="comment">A JavaScript function to run when the response is received</td>
+                <td>
+                    <ul>
+                    <li>This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations. </li>
+                    <li>Embed the API query in <code>&lt;script&gt;</code> tags.</li> 
+                    <li>Define the callback function in <code>&lt;script&gt;</code> tags. </li>
+                    <li>See <a href="https://developers.google.com/translate/v2/getting_started#JSONP">REST from JavaScript</a> in the Getting Started document for an example. </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td id="key" class="attribute required guid"><code>key</code></td>
+                <td class="comment">Your API key</td>
                 <td>
                     <ul>
                         <li>This API requires a valid key for all requests</li>
@@ -66,7 +65,7 @@
             </tr>
             <tr>
                 <td id="prettyprint" class="attribute queryable"><code>prettyprint</code></td>
-                <td class="comment" >Returns a response with indentations and line breaks</td>
+                <td class="comment">Returns a response with indentations and line breaks</td>
                 <td>
                     <ul>
                         <li>A <span class="hresource-datatype">boolean</span> parameter</li>
@@ -76,7 +75,7 @@
                 </td>
             </tr>
             <tr>
-                <td id="q" class="attribute required" ><code>q</code></td>
+                <td id="q" class="attribute required"><code>q</code></td>
                 <td class="comment">Source text</td>
                 <td>
                     <ul>
@@ -87,7 +86,7 @@
                 </td>
             </tr>
             <tr>
-                <td id="language" class="attribute required read-only" ><code>language</code></td>
+                <td id="language" class="attribute required read-only"><code>language</code></td>
                 <td class="comment">'language' is the language code in the iso format</td>
                 <td>
                     <ul>
@@ -96,7 +95,7 @@
                 </td>
             </tr>
             <tr>
-                <td id="isReliable" class="attribute read-only" ><code>isReliable</code></td>
+                <td id="isReliable" class="attribute read-only"><code>isReliable</code></td>
                 <td class="comment">'isReliable' has been DEPRECATED. </td>
                 <td>
                     <ul>
@@ -107,20 +106,21 @@
                 </td>
             </tr>
             <tr>
-                <td id="confidence" class="attribute read-only" ><code>confidence</code></td>
+                <td id="confidence" class="attribute read-only"><code>confidence</code></td>
                 <td class="comment">The confidence in language detection</td>
                 <td>
-		          <ul>
+                  <ul>
                     <li>'confidence' is an optional parameter with a floating point value between 0 and 1.</li> 
                     <li>The closer this value is to 1, the higher the confidence in language detection. </li>
                     <li>Note that this parameter is not always available.</li>
                     <li>Read only Parameter</li>
-		          </ul>
+                  </ul>
                 </td>
             </tr>
 
-    	</tbody>
-    	</table>
-	</div>
-</body>
-<html>
+        </tbody>
+        </table>
+    </div>
+
+
+</body></html>

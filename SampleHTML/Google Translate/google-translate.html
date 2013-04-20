@@ -1,58 +1,57 @@
-<html>
-<head>
+<html><head>
     <link rel="shortcut icon" href="https://developers.google.com/_static/images/favicon.ico">
-    <link rel='hresource-documentation' type="text/html"/>
-	<title>Using REST - Google Translate API — Google Developers</title>
-	<style type="text/css">
-	body {
-		font-family: Arial,sans-serif;color: #222;line-height: 1.67;
-		background-color: #fff;overflow-y: scroll;min-width: 1000px;
-	}
-	table {
-		border: 1px solid #bbb;border-spacing: 0;
-		border-collapse: collapse;margin: 0 0 1.5em;
-	}
-	table th {
-		background: #6199df;
-		color: #FFF;border: 1px solid #4d90fe;
-	}
-	pre, code, tt {
-		font: 1em "Droid Sans Mono",monospace;
-		line-height: 1.5;color: #007000;
-	}
-	pre {
-		padding: 6px 10px;background-color: #FAFAFA;
-		border: 1px solid #bbb;overflow: auto;
-	}
-	h1{
-		font-size: 2em;padding-bottom: 4px;border-bottom: 1px solid #ccc;
-	}
+    <link rel="hresource-documentation" type="text/html">
+    <title>Using REST - Google Translate API Ã¢â‚¬â€ Google Developers</title>
+    <style type="text/css">
+    body {
+        font-family: Arial,sans-serif;color: #222;line-height: 1.67;
+        background-color: #fff;overflow-y: scroll;min-width: 1000px;
+    }
+    table {
+        border: 1px solid #bbb;border-spacing: 0;
+        border-collapse: collapse;margin: 0 0 1.5em;
+    }
+    table th {
+        background: #6199df;
+        color: #FFF;border: 1px solid #4d90fe;
+    }
+    pre, code, tt {
+        font: 1em "Droid Sans Mono",monospace;
+        line-height: 1.5;color: #007000;
+    }
+    pre {
+        padding: 6px 10px;background-color: #FAFAFA;
+        border: 1px solid #bbb;overflow: auto;
+    }
+    h1{
+        font-size: 2em;padding-bottom: 4px;border-bottom: 1px solid #ccc;
+    }
 
-	</style>
+    </style>
 </head>
 <body>
-	<div class="hresource" style="margin-left: 176px;margin-right: 50px;">
-		<h1>Google <span class="name">translate</span> API v2 </h1>
-		<p class="comment" >You can translate text from one language to another language by sending an HTTP GET request to its URI.<p>The URI for a request is
-		<pre class="uri">https://www.googleapis.com/language/translate/v2</pre>
-		<h4>parameters</h4>
-		<table border="1">
-  		<thead>
-    		<tr><th>Parameter</th><th>Meaning</th><th>Notes</th></tr>
-    	</thead>
-    	<tbody>
-    		<tr>
-    			<td id="callback" class="attribute" ><code>callback</code></td>
-    			<td class="comment" >A JavaScript function to run when the response is received</td>
-    			<td>
-    				<ul>
-    				<li>This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations. </li>
-    				<li>Embed the API query in <code>&lt;script&gt;</code> tags.</li> 
-    				<li>Define the callback function in <code>&lt;script&gt;</code> tags. </li>
-    				<li>See <a href="https://developers.google.com/translate/v2/getting_started#JSONP">REST from JavaScript</a> in the Getting Started document for an example. </li>
-    				</ul>
-    			</td>
-    		</tr>
+    <div class="hresource" style="margin-left: 176px;margin-right: 50px;">
+        <h1>Google <span class="name">translate</span> API v2 </h1>
+        <p class="comment">You can translate text from one language to another language by sending an HTTP GET request to its URI.</p><p>The URI for a request is
+        </p><pre class="uri">https://www.googleapis.com/language/translate/v2</pre>
+        <h4>parameters</h4>
+        <table border="1">
+        <thead>
+            <tr><th>Parameter</th><th>Meaning</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="callback" class="attribute"><code>callback</code></td>
+                <td class="comment">A JavaScript function to run when the response is received</td>
+                <td>
+                    <ul>
+                    <li>This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations. </li>
+                    <li>Embed the API query in <code>&lt;script&gt;</code> tags.</li> 
+                    <li>Define the callback function in <code>&lt;script&gt;</code> tags. </li>
+                    <li>See <a href="https://developers.google.com/translate/v2/getting_started#JSONP">REST from JavaScript</a> in the Getting Started document for an example. </li>
+                    </ul>
+                </td>
+            </tr>
             <tr>
                 <td id="format" class="attribute"><code>format</code></td>
                 <td>Format</td>
@@ -65,8 +64,8 @@
             </tr>
 
             <tr>
-                <td id="key" class="attribute required guid" ><code>key</code></td>
-                <td  class="comment">Your API key</td>
+                <td id="key" class="attribute required guid"><code>key</code></td>
+                <td class="comment">Your API key</td>
                 <td>
                     <ul>
                         <li>This API requires a valid key for all requests</li>
@@ -76,7 +75,7 @@
             </tr>
             <tr>
                 <td id="prettyprint" class="attribute queryable"><code>prettyprint</code></td>
-                <td class="comment" >Returns a response with indentations and line breaks</td>
+                <td class="comment">Returns a response with indentations and line breaks</td>
                 <td>
                     <ul>
                         <li>A <span class="hresource-datatype">boolean</span> parameter</li>
@@ -86,7 +85,7 @@
                 </td>
             </tr>
             <tr>
-                <td id="q" class="attribute required" ><code>q</code></td>
+                <td id="q" class="attribute required"><code>q</code></td>
                 <td class="comment">Source text</td>
                 <td>
                     <ul>
@@ -96,24 +95,24 @@
                 </td>
             </tr>
             <tr>
-                <td id="source" class="attribute" ><code>source</code></td>
+                <td id="source" class="attribute"><code>source</code></td>
                 <td class="comment">Source language</td>
                 <td>
                     <ul>
                         <li>The language of the source text. The value should be one of the language codes listed in <a href="#language-params">Language reference</a>. </li>
                         <li>Supported language codes is produced by <a rel="hresource-produced-by" href="google-translate language.html#language">languages</a>
-                        <li>If a language is not specified, the system will attempt to identify the source language automatically. </li>
+                        </li><li>If a language is not specified, the system will attempt to identify the source language automatically. </li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td id="target"class="attribute required" ><code>target</code></td>
+                <td id="target" class="attribute required"><code>target</code></td>
                 <td class="comment">Target language</td>
                 <td>
                     <ul>
                         <li>The language to translate the source text into. The value should be one of the language codes listed in <a href="#language-params">Language reference</a></li>
                         <li>Supported language codes is produced by <a rel="hresource-produced-by" href="google-translate language.html#language">languages</a>
-                    </ul>
+                    </li></ul>
                 </td>
             </tr>
             <tr>
@@ -135,8 +134,8 @@
                     </ul>
                 </td>
             </tr>
-    	</tbody>
-    	</table>
-	</div>
-</body>
-<html>
+        </tbody>
+        </table>
+    </div>
+
+</body></html>

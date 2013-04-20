@@ -84,3 +84,9 @@ helps reverse traversal of resources and also  makes the system more peer-to-pee
 to be provided in either at one of the consumers or at the provider and an agent can identify this with link 
 traversal. The annotation is made with the rel attribute `hresource-produced-by`.
 
+<!--
+TODO
+1. template paramters
+2. headers parameters
+3. allowed methords
+-->
