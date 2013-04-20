@@ -1,7 +1,7 @@
-var json = new Array();
+var docjsons = new Array();
+var docurls = new Array();
 
-var base_url = "http://127.0.0.1:8081";
-
+var base_url = ".";
 
 $(document).ready(function(){
 	
@@ -10,11 +10,12 @@ $(document).ready(function(){
 		var url = $('#docurl').val();
 		var pattern = /(file|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 		if (pattern.test(url)) {
-			alert(url);
-			$.getJSON(base_url+'/parse?url=' + url, function(data) {
-					json.push(data);
-					alert(data)
-			});
+			if(docurls.indexOf(url) == -1){
+				$.getJSON(base_url+'/parse?url=' + url, function(data) {
+					docjsons.push(data);
+					docurls.push(url);
+				});
+			}
     	}
     	else alert("Url is invalid");
 	});
