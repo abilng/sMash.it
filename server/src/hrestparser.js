@@ -46,6 +46,7 @@ hrestParser.XPATH = {
         URI : "descendant::*[contains(@class,'uri')]|descendant::*[contains(@class,'url')]",
         COMMENT : "./*[contains(@class,'comment')]",
         ISA : "descendant::*[@rel='hresource-is-a']",
+        METHOD :"descendant::*[contains(@class,'method')]", 
         ATTRIBUTE : "descendant::*[contains(@class,'attribute')]",
         ATTRIBUTE_COMMENT : "../*[contains(@class,'comment')]",
         ATTRIBUTE_CONSUMER : "../descendant::*[@rel='hresource-consumed-by']",
@@ -156,6 +157,21 @@ hrestParser.prototype = {
             return errors
         }
     },
+    listMethods:function (root) {
+        httpMethods = ["GET","POST","PUT","DELETE"];
+        var methods = [];
+        var methodNodes = xpath(hrestParser.XPATH.METHOD,root)
+        var methodNode;
+        for (var i = 0; i < methodNodes.snapshotLength; i++) {
+            methodNode = methodNodes.snapshotItem(i);
+            method = methodNode.textContent.trim().toUpperCase();
+            if(httpMethods.indexOf(method) != -1){
+                methods.push(method);
+            }
+        }
+        return methods;
+
+    },
     getApis:function (doc){
         var result = [];
         var div;
@@ -187,6 +203,7 @@ hrestParser.prototype = {
             }else{
                 comment = ""
             }
+
             var opformatNode = xpath(hrestParser.XPATH.OUTPUT_FORMAT,div)
             var opformat;
             if(opformatNode.snapshotLength !=0){
@@ -194,6 +211,8 @@ hrestParser.prototype = {
             } else {
                 opformat = "json";
             }
+
+            var methods = this.listMethods(div);
             
             var attributes =[]
             var attributeNodes = xpath(hrestParser.XPATH.ATTRIBUTE,div);
@@ -204,13 +223,14 @@ hrestParser.prototype = {
 
             errors = this.listErrors(div);
             var app = {};
-            app["name"] = name
-            app["uri"] = uri
-            app["is-a"] = superclass
-            app["description"] = comment
-            app["output-format"] = opformat
-            app["attributes"] = attributes
-            app["errors"] = errors
+            app["name"] = name;
+            app["uri"] = uri;
+            app["is-a"] = superclass;
+            app["description"] = comment;
+            app["output-format"] = opformat;
+            app["methods"] = methods;
+            app["attributes"] = attributes;
+            app["errors"] = errors;
             result.push(app);
         }
         return result;
