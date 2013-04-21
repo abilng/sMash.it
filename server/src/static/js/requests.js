@@ -3,7 +3,6 @@ var docurls = new Array();
 
 var base_url = ".";
 
-
 $(document).ready(function(){
 	
 
@@ -47,7 +46,7 @@ function getApiName (jsonindex,apiindex) {
 
 function createWidgetContent(jsonindex,apiindex){
     var innerhtmlstring = "<p> " + docjsons[jsonindex].apis[apiindex].description 
-            + "</p></br><button> Edit arguments </button><select name = 'Method'>";
+            + "</p></br><button onclick='openModalForm(this)'> Edit arguments </button><select name = 'Method'>";
     for(var i=0;i<docjsons[jsonindex].apis[apiindex].methods.length;i++){
         innerhtmlstring+= "<option value= '" + docjsons[jsonindex].apis[apiindex].methods[i].type + "'>" 
                     + docjsons[jsonindex].apis[apiindex].methods[i].type + "</option>";
@@ -65,6 +64,7 @@ function getInputs (json_api,method) {
     };
     return json_api.methods[index].inputs
 }
+
 function getOutputs (json_api,method) {
     var index = -1;
     for (var i = 0; i < json_api.methods.length; i++) {
@@ -78,7 +78,7 @@ function getOutputs (json_api,method) {
 
 
 function argumentDiv (json_api,method) {
-    var div = $("<div><form>");
+    var div = $("<div class='dialog-form'><form>");
     var apiName = json_api.name;
     inputs = getInputs(json_api,method);
 
@@ -162,7 +162,65 @@ function argumentDiv (json_api,method) {
         attributediv.append(label,input,comment);
         div.append(attributediv);
     };
-
+    div.append($("<input type=submit>"));
     return div;
+}
+
+function mappingDiv(src_index1,src_index2,src_method,dst_index1,dst_index2,dest_method){
+    var outputs=getOutputs(docjsons[src_index1].apis[src_index2],src_method);
+    //console.log(outputs);
+    //op = outputs;
+    var inputs=getInputs(docjsons[dst_index1].apis[dst_index2],dest_method);
+    //console.log(inputs);
+    //ip = inputs;
+    var srcapiname=docjsons[src_index1].apis[src_index2].name;
+    var dstapiname=docjsons[dst_index1].apis[dst_index2].name;
+
+
+    var mappingdiv = $("<div class='attributemapping'>");
+    var mappings = $("<div class='mappings'>");
+    var m = $("<div class='m'>");
+    var addbtn = $("<button onclick='newMap("+src_index1+","+src_index2+",\""+src_method+"\","+dst_index1+","+dst_index2+",\""+dest_method+"\")'>").text("Add mapping");
+    var o_selector = makeSelector(outputs);
+    o_selector.attr("name","output");
+    o_selector.attr('id',"outputsel");
+    m.append(o_selector);
+    m.append($("<p>").text("    ->    "));
+    var i_selector = makeSelector(inputs);
+    i_selector.attr("name","input");
+    i_selector.attr('id',"inputsel");
+    m.append(i_selector);
+    m.append($('<a class="close" href="#" onclick="removeMapping(this)">'));
+    mappings.append(m);
+    mappingdiv.append(mappings);
+    mappingdiv.append(addbtn);
+    mappingdiv.append($("<input type=submit>"));
+    return mappingdiv;
+}
+
+function makeSelector(list){
+    var sel = $("<select>");
+    for(var i=0;i<list.length;i++){
+        htmlstr = $("<option value = '" + list[i] + "'>" + list[i] + "</option>");
+        sel.append(htmlstr);
+    }
+    return sel;
+}
+
+function newMap(s1,s2,sm,d1,d2,dm){
+    var op = getOutputs(docjsons[s1].apis[s2],sm);
+    var ip = getInputs(docjsons[d1].apis[d2],dm);
+    var mp = $("<div class='m'>");
+    var o_selector = makeSelector(op);
+    o_selector.attr("name","output");
+    o_selector.attr('id',"outputsel");
+    mp.append(o_selector);
+    mp.append($("<p>").text("    ->    "));
+    var i_selector = makeSelector(ip);
+    i_selector.attr("name","input");
+    i_selector.attr('id',"inputsel");
+    mp.append(i_selector);
+    mp.append($('<a class="close" href="#" onclick="removeMapping(this)">'));
+    $(".mappings").append(mp);
 }
 
