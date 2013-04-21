@@ -15,15 +15,14 @@ function init()
                                     pos.left = pos.left - parentpos.left;
                                     pos.top = pos.top - parentpos.top;
                                     var indexstr = $(ui.draggable).attr("id");
-                                    //alert("-> " + indexstr.charAt(indexstr.length-1) + "-> " + indexstr.charAt(indexstr.length-3) );
-                                    var jindex = parseInt(indexstr.charAt(indexstr.length-1));
-                                    var aindex = parseInt(indexstr.charAt(indexstr.length-3));
+                                    var splitstr = indexstr.split("-");
+                                    var jindex = parseInt(splitstr[1]);
+                                    var aindex = parseInt(splitstr[2]);
                                     //alert("j: " + jindex);
                                     var con = createWidgetContent(jindex,aindex);
                                     var title = getApiName(jindex,aindex);
-                                    //alert($(ui.draggable).attr("id"));
-    							  	//$(this).find("p").html("position left : " + parseInt(pos.left) + " top : " + parseInt(pos.top));
-    							  	insertDiv(pos,title,con,jindex,aindex);
+                                    
+                                    insertDiv(pos,title,con,jindex,aindex);
     							  }
     							});
 }
@@ -103,8 +102,8 @@ jsPlumb.bind("jsPlumbConnection", function (CurrentConnection) {
 
 
 function insertDiv(pos,title,cont,jindex,aindex){
-            var obj = new Date();
-            var Div = $('<div>', { id: "widget-"+jindex +"-"+ aindex +"-" + obj.getSeconds() },
+            var sec = new Date().getTime()
+            var Div = $('<div>', { id: "widget-"+jindex +"-"+ aindex +"-" + sec },
              { class: 'widget' }).css({
               position:'absolute', left: parseInt(pos.left) +'px', 
               top:parseInt(pos.top)+'px'});
@@ -120,6 +119,7 @@ function insertDiv(pos,title,cont,jindex,aindex){
             jsPlumb.addEndpoint($(Div), inendpointOptions);
             jsPlumb.draggable($(Div));
             $(Div).addClass('widget');
+            addtoAttributeArray(jindex,aindex,sec);
 }
 
 function closeWidget(){
