@@ -176,7 +176,7 @@ function argumentDiv (jindex,aindex,method) {
         attributediv.append(label,input,comment);
         div.append(attributediv);
     };
-    div.append($("<input type=submit value='Done'>"));
+    div.append($("<input type=submit value='Done' onclick='argumentsSubmit(this,"+jindex+","+aindex+")'>"));
     return div;
 }
 
@@ -204,11 +204,11 @@ function mappingDiv(src_index1,src_index2,src_method,dst_index1,dst_index2,dest_
     i_selector.attr("name","input");
     i_selector.attr('id',"inputsel");
     m.append(i_selector);
-    m.append($('<a class="close" href="#" onclick="removeMapping(this)">'));
+    m.append($('<a class="close" href="#" onclick="removeMapping(this,'+src_index1+','+src_index2+','+dst_index1+','+dst_index2+')">'));
     mappings.append(m);
     mappingdiv.append(mappings);
     mappingdiv.append(addbtn);
-    mappingdiv.append($("<input type=submit value='Done'>"));
+    mappingdiv.append($("<input type=submit value='Done' onclick='mappingSubmit()'>"));
     return mappingdiv;
 }
 
@@ -238,3 +238,11 @@ function newMap(s1,s2,sm,d1,d2,dm){
     $(".mappings").append(mp);
 }
 
+function argumentsSubmit(element,outerindex,innerindex){
+    alert("element here gives submit button in the div")
+
+}
+
+function mappingSubmit(element,sindex1,sindex2,dindex1,dindex2){
+    alert("element here give submit button in div2")
+}
