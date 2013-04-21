@@ -71,6 +71,36 @@ jsPlumb.ready(function() {
 //    jsPlumb.draggable($(".widget"));
 })
 
+jsPlumb.bind("jsPlumbConnection", function (CurrentConnection) {
+        if (CurrentConnection.connection.targetId ==
+                                           CurrentConnection.connection.sourceId)
+            jsPlumb.detach(CurrentConnection.connection);
+        else
+            init(CurrentConnection.connection);
+        //alert("hi"+CurrentConnection.connection.targetId+"->"+CurrentConnection.connection.sourceId)
+        var src = CurrentConnection.connection.sourceId;
+        var dst = CurrentConnection.connection.targetId;
+        var srcindex = src.split("-");
+        var dstindex = dst.split("-");
+        var smethod = $('#'+src).find("select").val();
+        var dmethod = $('#'+dst).find("select").val();
+        //alert("-"+smethod+dmethod);
+        var mapdiv = mappingDiv(parseInt(srcindex[1]),parseInt(srcindex[2]),
+                                smethod,
+                                parseInt(dstindex[1]),parseInt(dstindex[2]),
+                                dmethod);
+        $('body').append(mapdiv);
+        $(mapdiv).dialog({
+                        autoOpen: false,
+                        height: 300,
+                        width: 525,
+                        modal: true,
+                      })
+        $(mapdiv).dialog("open");
+    });
+
+
+
 function insertDiv(pos,title,cont,jindex,aindex){
             var obj = new Date();
             var Div = $('<div>', { id: "widget-"+jindex +"-"+ aindex +"-" + obj.getSeconds() },
@@ -99,3 +129,23 @@ function closeWidget(){
 	$("#"+ele).remove();
 }
 
+function openModalForm(element){
+    //console.log(element);
+    //alert($(element).parents("div").parents("div").attr("id"));
+    var parent = $(element).parents("div").parents("div");
+    var method = $(parent).find("select").val();
+    var splitstr = parent.attr("id").split("-");
+    var newdiv = argumentDiv(docjsons[parseInt(splitstr[1])].apis[parseInt(splitstr[2])],method);
+    $('body').append(newdiv);
+    $(newdiv).dialog({
+                        autoOpen: false,
+                        height: 500,
+                        width: 500,
+                        modal: true,
+                      })
+    $(newdiv).dialog("open");
+}
+
+function removeMapping(element){
+    $(element).parent().remove();
+}
