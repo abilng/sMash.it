@@ -41,6 +41,9 @@ function addSideBar (name,json,index) {
     $("#accordion").accordion("refresh");
 }
 
+function getApiName (jsonindex,apiindex) {
+    return docjsons[jsonindex].apis[apiindex].name;
+}
 
 function createWidgetContent(jsonindex,apiindex){
     var innerhtmlstring = "<p> " + docjsons[jsonindex].apis[apiindex].description + "</p></br><button> Edit arguments </button><select name = 'Method'>";
@@ -51,7 +54,7 @@ function createWidgetContent(jsonindex,apiindex){
 }
 
 
-function argumentDiv (parent,json_api) {
+function argumentDiv (json_api) {
     var div = $("<div>");
     var apiName = json_api.name;
     for (var i = 0; i < json_api.attributes.length; i++) {
@@ -130,6 +133,6 @@ function argumentDiv (parent,json_api) {
         attributediv.append(label,input,comment);
         div.append(attributediv);
     };
-    parent.append(div);
+    return div;
 }
 
