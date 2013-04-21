@@ -125,3 +125,19 @@
 ._jsPlumb_endpoint{
 	z-index:21;
 }
+
+/* Attribute popup */
+.attribute {
+	padding-top: 10px;
+}
+.attribute input{
+	margin-left: 120px;
+}
+.attribute label {
+	padding-left: 5px;
+	font-weight: bold;
+}
+.attribute p{
+	padding-left: 20px;
+	padding-right: 10px;
+}
