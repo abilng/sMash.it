@@ -1,7 +1,7 @@
 <html><head>
     <link rel="shortcut icon" href="https://developers.google.com/_static/images/favicon.ico">
     <link rel="hresource-documentation" type="text/html">
-    <title>Using REST - Google Translate API Ã¢â‚¬â€ Google Developers</title>
+    <title>Using REST - Google Translate API ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Google Developers</title>
     <style type="text/css">
     body {
         font-family: Arial,sans-serif;color: #222;line-height: 1.67;
@@ -28,12 +28,31 @@
     }
 
     </style>
-</head>
+<style type="text/css"></style></head>
 <body>
     <div class="hresource" style="margin-left: 176px;margin-right: 50px;">
         <h1>Google <span class="name">translate</span> API v2 </h1>
-        <p class="comment">You can translate text from one language to another language by sending an HTTP <span class="method">GET</span> request to its URI.</p><p>The URI for a request is
+        <p class="comment">You can translate text from one language to another language by sending an HTTP GET request to its URI.</p><p>The URI for a request is
         </p><pre class="uri">https://www.googleapis.com/language/translate/v2</pre>
+        <div class="method">
+            It use HTTP <span class="type">GET</span> request with:<br>
+            Inputs:
+            <ul>
+                <li class="input">callback</li>
+                <li class="input">format</li>
+                <li class="input">key</li>
+                <li class="input">prettyprint</li>
+                <li class="input">q</li>
+                <li class="input">source</li>
+                <li class="input">target</li>
+            </ul>
+            Produces:
+            <ul>
+                <li class="output">translatedText</li>
+                <li class="output">detectedSourceLanguage</li>
+            </ul>
+        </div>
+
         <h4>parameters</h4>
         <table border="1">
         <thead>
