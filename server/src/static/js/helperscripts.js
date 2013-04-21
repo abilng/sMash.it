@@ -14,32 +14,53 @@ function init()
                                     var parentpos=$('div.workbench').position();
                                     pos.left = pos.left - parentpos.left;
                                     pos.top = pos.top - parentpos.top;
+                                    var indexstr = $(ui.draggable).attr("id");
+                                    //alert("-> " + indexstr.charAt(indexstr.length-1) + "-> " + indexstr.charAt(indexstr.length-3) );
+                                    var jindex = parseInt(indexstr.charAt(indexstr.length-1));
+                                    var aindex = parseInt(indexstr.charAt(indexstr.length-3));
+                                    //alert("j: " + jindex);
+                                    var con = createWidgetContent(jindex,aindex);
+                                    //alert($(ui.draggable).attr("id"));
     							  	//$(this).find("p").html("position left : " + parseInt(pos.left) + " top : " + parseInt(pos.top));
-    							  	insertDiv(this,pos);
+    							  	insertDiv(this,pos,con);
     							  }
     							});
 }
 var targetColor = "#bd0b0b";
 var w23Stroke = "rgb(189,11,11)";
-var endpointOptions = {     
+var outendpointOptions = {     
     isSource:true,
-    isTarget:true,
-    endpoint:"Rectangle",
+    endpoint:["Rectangle",{width:12, height:13}],
     endpointStyles:[
         { gradient : { stops:[[0, w23Stroke], [1, "#558822"]] }},
         { gradient : {stops:[[0, w23Stroke], [1, "#882255"]] }}], 
     paintStyle:{ fillStyle: targetColor, lineWidth:5, strokeStyle:w23Stroke, outlineColor:"#000000", outlineWidth:1}, //Line color
-    isSource: true, //Starting point of the connector
     connectorStyle: { strokeStyle: targetColor, lineWidth: 5, outlineColor:"#000000", outlineWidth:1 }, 
     maxConnections: -1,
     dropOptions: {
         activeClass: 'dragActive'
-    }
+    },
+    anchor: "BottomCenter"
 }; 
+
+var inendpointOptions = {
+    isTarget:true,
+    endpointStyles:[
+        { gradient : { stops:[[0, "#000050"], [1, "#000000"]] }},
+        { gradient : {stops:[[0, "#000000"], [1, "#000050"]] }}], 
+    paintStyle:{ fillStyle: targetColor, lineWidth:5, strokeStyle:w23Stroke, outlineColor:"#000000", outlineWidth:1}, //Line color
+    connectorStyle: { strokeStyle: targetColor, lineWidth: 5, outlineColor:"#000000", outlineWidth:1 }, 
+    maxConnections: -1,
+    dropOptions: {
+        activeClass: 'dragActive'
+    },
+    anchor: "TopCenter"
+};
+
 jsPlumb.ready(function() {
         jsPlumb.setRenderMode(jsPlumb.CANVAS);
         jsPlumb.importDefaults({
-        Connector : ["Bezier",{ curviness: 50}],
+        Connector : ["Bezier",{ curviness: 200}],
         Endpoint : ["Dot", {radius: 10}],
         EndpointStyle : { fillStyle : "#FF0000" },
         ConnectorZIndex : 20,
@@ -49,21 +70,20 @@ jsPlumb.ready(function() {
 //    jsPlumb.draggable($(".widget"));
 })
 
-
-function insertDiv(element,pos){
+function insertDiv(element,pos,cont){
             var obj = new Date();
             var Div = $('<div>', { id: "X" + obj.getSeconds() },
              { class: 'widget' }).css({ position:'absolute', left: parseInt(pos.left) +'px', top:parseInt(pos.top)+'px'})
 
             var head = $("<div class='widget-head'>").append($("<b>").text("title"),
                         $('<a class="close" href="#" onclick="closeWidget.call(this)">'));
-            var content = $('<div class="widget-content" style="display: block;">').append($("<p>").text("this is a test widget"),
-                        $('<p>').text('yes this is one'));
+            var content = $('<div class="widget-content" style="display: block;">').append(cont);
 
             Div.append(head,content);
             $('#wbench').append(Div)
 
-            jsPlumb.addEndpoint($(Div), endpointOptions);
+            jsPlumb.addEndpoint($(Div), outendpointOptions);
+            jsPlumb.addEndpoint($(Div), inendpointOptions);
             jsPlumb.draggable($(Div));
             $(Div).addClass('widget');
 }

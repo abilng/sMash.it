@@ -98,8 +98,10 @@
 	padding: 1px 5px;
 	overflow: hidden;
 	opacity: 0.9;
+	font-size:10px;
 	min-height: 75px;
 	min-width: 125px;
+	max-width: 200px;
 }
 
 .close{
@@ -124,4 +126,13 @@
 
 ._jsPlumb_endpoint{
 	z-index:21;
+}
+
+.widget button{
+	float: left;
+}
+
+.widget select{
+	width : 60px;
+	float: right;
 }
