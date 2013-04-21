@@ -22,7 +22,7 @@ var RDFCreator = function (response){
     this.processed=0;
     this.response = response;
 
-   this.xw = new XMLWriter;
+    this.xw = new XMLWriter(true);
     /* initialize the RDF */
    this.xw.formatting = 'indented';
    this.xw.indentChar = ' ';
@@ -101,9 +101,9 @@ processJson :  function (json)
 		consumer=consumer+'\\#'+attribute;
 		this.xw.writeElement('rest:consumedBy',consumer);
 	    }
-	    for(k=0;k<obj.apis[i].attributes[j]['producered-by'].length;k++) {
-		var attribute=obj.apis[i].attributes[j]['producered-by'][k].attribute;
-		var producer=obj.apis[i].attributes[j]['producered-by'][k]["doc-url"];
+	    for(k=0;k<obj.apis[i].attributes[j]['produced-by'].length;k++) {
+		var attribute=obj.apis[i].attributes[j]['produced-by'][k].attribute;
+		var producer=obj.apis[i].attributes[j]['produced-by'][k]["doc-url"];
 		if(producer && !this.listContains(producer)){
 		    this.resources.push(producer);
 		}
@@ -129,15 +129,13 @@ parseURL : function (docurl) {
             doc += chunk;
         })
         res.on('end',function() {
-            //console.log(doc)
-            //console.log("EOD");
             document = new DOMParser().parseFromString(doc,"application/xhtml+xml");
             parser = new hrestParser(document,docurl);
             parser.parse();
             var json = parser.getJSON();
 
             if(json){
-                /* Generate this.graph */
+                /* Generate graph */
 		parent.resources.push(docurl);
 		parent.processJson(json);
 		parent.processed++;
@@ -145,29 +143,38 @@ parseURL : function (docurl) {
 		    if(parent.processed >50) { 
 			parent.xw.endElement();
 			parent.xw.endDocument();
-			console.log(parent.xw.toString());
-                        //code to quit goes here
+			parent.response.writeHead(200, {"Content-type" : "application/rdf+xml"});
+                	parent.response.write(parent.xw.toString());
+                	parent.response.end();
+			//console.log(parent.xw.toString());
+                        return;
 		    }
 		    url=parent.resources[parent.processed];
 		    parent.parseURL(url);
-		    console.log(parent.resources.length + "" +parent.processed );
+		    /*console.log(parent.resources.length + "" +parent.processed );
 		    for(i=0;i<parent.resources.length;i++)
-		    	console.log(parent.resources[i]);
+		    	console.log(parent.resources[i]);*/
  		}
 		else 
  		{
 		    parent.xw.endElement();
 	            parent.xw.endDocument();
-		    console.log(parent.xw.toString());
-                    //code to quit goes here 
+                    parent.response.writeHead(200, {"Content-type" : "application/rdf + xml"});
+                    parent.response.write(parent.xw.toString());
+                    parent.response.end();
+		    //console.log(parent.xw.toString());
+                    return; 
 		}
 	    }else{
 		parent.processed++;
 		if(parent.processed>=parent.resources.length){ 
 		    parent.xw.endElement();
 		    parent.xw.endDocument();
-		    console.log(parent.xw.toString());
-                    //code to quit goes here
+                    parent.response.writeHead(200, {"Content-type" : "application/rdf + xml"});
+                    parent.response.write(parent.xw.toString());
+                    parent.response.end();
+		    //console.log(parent.xw.toString());
+                    return;
                  }
 	    }
 	})
@@ -177,8 +184,11 @@ parseURL : function (docurl) {
 	if(parent.processed>=parent.resources.length){ 
 	    parent.xw.endElement();
 	    parent.xw.endDocument();
-	    console.log(parent.xw.toString());
-            //code to quit goes here
+            parent.response.writeHead(200, {"Content-type" : "application/rdf + xml"});
+            parent.response.write(parent.xw.toString());
+            parent.response.end();
+	    //console.log(parent.xw.toString());
+            return;
         }
     })
 }
