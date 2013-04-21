@@ -27,6 +27,7 @@ function init()
     							  }
     							});
 }
+
 var targetColor = "#bd0b0b";
 var w23Stroke = "rgb(189,11,11)";
 var outendpointOptions = {     
@@ -135,7 +136,7 @@ function openModalForm(element){
     var parent = $(element).parents("div").parents("div");
     var method = $(parent).find("select").val();
     var splitstr = parent.attr("id").split("-");
-    var newdiv = argumentDiv(docjsons[parseInt(splitstr[1])].apis[parseInt(splitstr[2])],method);
+    var newdiv = argumentDiv(parseInt(splitstr[1]),parseInt(splitstr[2]),method);
     $('body').append(newdiv);
     $(newdiv).dialog({
                         autoOpen: false,

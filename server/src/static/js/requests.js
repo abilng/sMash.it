@@ -77,7 +77,8 @@ function getOutputs (json_api,method) {
 }
 
 
-function argumentDiv (json_api,method) {
+function argumentDiv (jindex,aindex,method) {
+    var json_api = docjsons[jindex].apis[aindex];
     var div = $("<div class='dialog-form'><form>");
     var apiName = json_api.name;
     inputs = getInputs(json_api,method);
@@ -162,7 +163,7 @@ function argumentDiv (json_api,method) {
         attributediv.append(label,input,comment);
         div.append(attributediv);
     };
-    div.append($("<input type=submit>"));
+    div.append($("<input type=submit value='Done'>"));
     return div;
 }
 
@@ -194,7 +195,7 @@ function mappingDiv(src_index1,src_index2,src_method,dst_index1,dst_index2,dest_
     mappings.append(m);
     mappingdiv.append(mappings);
     mappingdiv.append(addbtn);
-    mappingdiv.append($("<input type=submit>"));
+    mappingdiv.append($("<input type=submit value='Done'>"));
     return mappingdiv;
 }
 
