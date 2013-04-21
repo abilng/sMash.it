@@ -10,6 +10,7 @@ var fs = require('fs');
 var DOMParser = require('xmldom').DOMParser
 var Mime = require('mime')
 var hrestParser = require("./hrestparser").hrestParser
+var RDFCreator = require("./jsonToGraph").RDFCreator;
 
 //global
 var static_basepath = __dirname+"/static/"
@@ -49,10 +50,10 @@ function parse (docurl,response) {
 
 function send404 (response) {
     html404 = "<html lang='en'><head><title>404 Page Not Found</title>"
-            +"</head><body><div id='container'>"
-            +"<h1>404 Page Not Found</h1>"
-            +"<p>The page you requested was not found.</p>"
-            +"</div></body></html>";
+        +"</head><body><div id='container'>"
+        +"<h1>404 Page Not Found</h1>"
+        +"<p>The page you requested was not found.</p>"
+        +"</div></body></html>";
     response.writeHead(404,{"Content-type":"text/html"});
     response.write(html404)
     response.end();
@@ -73,22 +74,31 @@ function htmlserver (path,response) {
 
 
 function route(request, response) {
-	var req = url.parse(request.url, true);
-	var pathname = req.pathname
-	var query = req.query
+    var req = url.parse(request.url, true);
+    var pathname = req.pathname
+    var query = req.query
 
     if (pathname == '/' ){
         htmlserver("index.html",response);
     }
-	if (pathname == '/parse') {
-		console.log("Pasre recieved")
+    if (pathname == '/parse') {
+	console.log("Pasre recieved")
         docurl = query.url;
         if(docurl){
             parse(docurl,response);
         } else {
             send404(response);   
         }
+    } else if(pathname == '/rdf'){
+	console.log("RDF request recieved")
+        docurl = query.url;
+	if(docurl){
+	    rdfparser = new RDFCreator(response);
+	    rdfparser.parseURL(docurl);
 	} else {
+            send404(response);   
+        }
+    } else {
         htmlserver(pathname,response);
     }
 
