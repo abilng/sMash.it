@@ -23,7 +23,7 @@ function init()
                                     var title = getApiName(jindex,aindex);
                                     //alert($(ui.draggable).attr("id"));
     							  	//$(this).find("p").html("position left : " + parseInt(pos.left) + " top : " + parseInt(pos.top));
-    							  	insertDiv(this,pos,title,con);
+    							  	insertDiv(pos,title,con,jindex,aindex);
     							  }
     							});
 }
@@ -71,10 +71,12 @@ jsPlumb.ready(function() {
 //    jsPlumb.draggable($(".widget"));
 })
 
-function insertDiv(element,pos,title,cont){
+function insertDiv(pos,title,cont,jindex,aindex){
             var obj = new Date();
-            var Div = $('<div>', { id: "X" + obj.getSeconds() },
-             { class: 'widget' }).css({ position:'absolute', left: parseInt(pos.left) +'px', top:parseInt(pos.top)+'px'})
+            var Div = $('<div>', { id: "widget-"+jindex +"-"+ aindex +"-" + obj.getSeconds() },
+             { class: 'widget' }).css({
+              position:'absolute', left: parseInt(pos.left) +'px', 
+              top:parseInt(pos.top)+'px'});
 
             var head = $("<div class='widget-head'>").append($("<b>").text(title),
                         $('<a class="close" href="#" onclick="closeWidget.call(this)">'));

@@ -3,6 +3,7 @@ var docurls = new Array();
 
 var base_url = ".";
 
+
 $(document).ready(function(){
 	
 
@@ -20,7 +21,6 @@ $(document).ready(function(){
     	}
     	else alert("Url is invalid");
 	});
-
 });
 
 function addSideBar (name,json,index) {
@@ -46,16 +46,18 @@ function getApiName (jsonindex,apiindex) {
 }
 
 function createWidgetContent(jsonindex,apiindex){
-    var innerhtmlstring = "<p> " + docjsons[jsonindex].apis[apiindex].description + "</p></br><button> Edit arguments </button><select name = 'Method'>";
+    var innerhtmlstring = "<p> " + docjsons[jsonindex].apis[apiindex].description 
+            + "</p></br><button> Edit arguments </button><select name = 'Method'>";
     for(var i=0;i<docjsons[jsonindex].apis[apiindex].methods.length;i++){
-        innerhtmlstring+= "<option value= '" + docjsons[jsonindex].apis[apiindex].methods[i] + "'>" + docjsons[jsonindex].apis[apiindex].methods[i] + "</option>";
+        innerhtmlstring+= "<option value= '" + docjsons[jsonindex].apis[apiindex].methods[i].type + "'>" 
+                    + docjsons[jsonindex].apis[apiindex].methods[i].type + "</option>";
     }
     return innerhtmlstring; 
 }
 
 
-function argumentDiv (json_api) {
-    var div = $("<div>");
+function argumentDiv (json_api,methods) {
+    var div = $("<div><form>");
     var apiName = json_api.name;
     for (var i = 0; i < json_api.attributes.length; i++) {
         attribute=json_api.attributes[i];
@@ -133,6 +135,7 @@ function argumentDiv (json_api) {
         attributediv.append(label,input,comment);
         div.append(attributediv);
     };
+
     return div;
 }
 
