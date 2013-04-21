@@ -1,5 +1,6 @@
 var docjsons = new Array();
 var docurls = new Array();
+var attributeArray = new Object();
 
 var base_url = ".";
 
@@ -22,11 +23,23 @@ $(document).ready(function(){
 	});
 });
 
+function addtoAttributeArray (jindex,aindex,sec) {
+    var id = "widget-"+jindex +"-"+ aindex +"-" + sec;
+    var obj = {};
+    obj['apiindex'] = aindex;
+    obj['jindex'] = jindex;
+    obj['method'] = "";
+    obj['inputs'] = new Array();
+    obj['outputs'] = new Array();
+    attributeArray[id] = obj;
+}
+
+
 function addSideBar (name,json,index) {
 	var heading = $("<h3 id=" + index + ">").text(name)
     var div= $("<div style='padding:0px'>")
     for (var i = json.apis.length - 1; i >= 0; i--) {
-    	var button = $("<button class='mybutton' id='apibtn" + i +"-" +index + "''>").text(json.apis[i].name);
+    	var button = $("<button class='mybutton' id='apibtn-" + index +"-" +i + "''>").text(json.apis[i].name);
     	button.draggable({cancel:false, 
     								revert:false, 
     								appendTo: "#editorcontainer", 
