@@ -80,15 +80,10 @@ jsPlumb.bind("jsPlumbConnection", function (CurrentConnection) {
         //alert("hi"+CurrentConnection.connection.targetId+"->"+CurrentConnection.connection.sourceId)
         var src = CurrentConnection.connection.sourceId;
         var dst = CurrentConnection.connection.targetId;
-        var srcindex = src.split("-");
-        var dstindex = dst.split("-");
         var smethod = $('#'+src).find("select").val();
         var dmethod = $('#'+dst).find("select").val();
         //alert("-"+smethod+dmethod);
-        var mapdiv = mappingDiv(parseInt(srcindex[1]),parseInt(srcindex[2]),
-                                smethod,
-                                parseInt(dstindex[1]),parseInt(dstindex[2]),
-                                dmethod);
+        var mapdiv = mappingDiv(src,smethod,dst,dmethod);
         $('body').append(mapdiv);
         $(mapdiv).dialog({
                         autoOpen: false,
@@ -135,8 +130,7 @@ function openModalForm(element){
     //alert($(element).parents("div").parents("div").attr("id"));
     var parent = $(element).parents("div").parents("div");
     var method = $(parent).find("select").val();
-    var splitstr = parent.attr("id").split("-");
-    var newdiv = argumentDiv(parseInt(splitstr[1]),parseInt(splitstr[2]),method);
+    var newdiv = argumentDiv(parent.attr("id"),method);
     $('body').append(newdiv);
     $(newdiv).dialog({
                         autoOpen: false,

@@ -29,9 +29,13 @@ function addtoAttributeArray (jindex,aindex,sec) {
     obj['apiindex'] = aindex;
     obj['jindex'] = jindex;
     obj['method'] = "";
-    obj['inputs'] = new Array();
-    obj['outputs'] = new Array();
+    obj['inputs'] = new Object();
+    obj['outputs'] = new Object();
     attributeArray[id] = obj;
+}
+
+function setMethodArray(id,method) {
+    attributeArray[id].method = method;
 }
 
 
@@ -90,9 +94,16 @@ function getOutputs (json_api,method) {
 }
 
 
-function argumentDiv (jindex,aindex,method) {
+function argumentDiv (id,method) {
+    var splitstr = id.split("-");
+    var jindex = parseInt(splitstr[1])
+    var aindex = parseInt(splitstr[2])
     var json_api = docjsons[jindex].apis[aindex];
-    var div = $("<div class='dialog-form'><form>");
+
+    setMethodArray(id,method);
+
+    var div = $("<div class='dialog-form'>");
+    var form = $("<form>")
     var apiName = json_api.name;
     inputs = getInputs(json_api,method);
 
@@ -173,14 +184,30 @@ function argumentDiv (jindex,aindex,method) {
             attributediv.addClass("quid");
         }            
 
+        if(attributeArray[id].inputs[attribute["name"]]){
+            if(attributeArray[id].inputs[attribute["name"]].value!=null){
+                alert(attributeArray[id].inputs[attribute["name"]].value);
+                $(inputs).attr("value",attributeArray[id].inputs[attribute["name"]].value.toString())
+            }
+        }
         attributediv.append(label,input,comment);
-        div.append(attributediv);
+        form.append(attributediv);
     };
-    div.append($("<input type=submit value='Done' onclick='argumentsSubmit(this,"+jindex+","+aindex+")'>"));
+    form.append($("<input type=button value='Done' onclick=\"argumentsSubmit(this,'"+id+"')\">"));
+    div.append(form);
     return div;
 }
 
-function mappingDiv(src_index1,src_index2,src_method,dst_index1,dst_index2,dest_method){
+function mappingDiv(src,src_method,dst,dest_method){
+    var srcindex = src.split("-");
+    var dstindex = dst.split("-");
+    
+    var src_index1 = srcindex[1];
+    var src_index2 = srcindex[2];
+
+    var dst_index1 = dstindex[1];
+    var dst_index2 = dstindex[2];
+
     var outputs=getOutputs(docjsons[src_index1].apis[src_index2],src_method);
     //console.log(outputs);
     //op = outputs;
@@ -204,11 +231,12 @@ function mappingDiv(src_index1,src_index2,src_method,dst_index1,dst_index2,dest_
     i_selector.attr("name","input");
     i_selector.attr('id',"inputsel");
     m.append(i_selector);
-    m.append($('<a class="close" href="#" onclick="removeMapping(this,'+src_index1+','+src_index2+','+dst_index1+','+dst_index2+')">'));
+    m.append($('<a class="close" href="#" onclick="removeMapping(this,'
+        +src_index1+','+src_index2+','+dst_index1+','+dst_index2+')">'));
     mappings.append(m);
     mappingdiv.append(mappings);
     mappingdiv.append(addbtn);
-    mappingdiv.append($("<input type=submit value='Done' onclick='mappingSubmit()'>"));
+    mappingdiv.append($("<input type=button value='Done' onclick='mappingSubmit()'>"));
     return mappingdiv;
 }
 
@@ -238,11 +266,27 @@ function newMap(s1,s2,sm,d1,d2,dm){
     $(".mappings").append(mp);
 }
 
-function argumentsSubmit(element,outerindex,innerindex){
-    alert("element here gives submit button in the div")
-
+function argumentsSubmit(element,id){
+    //alert("element here gives submit button in the div")
+    var splitstr = id.split("-");
+    var jindex = parseInt(splitstr[1])
+    var aindex = parseInt(splitstr[2])
+    var json_api = docjsons[jindex].apis[aindex];
+    var inputs = getInputs(docjsons[jindex].apis[aindex],
+        attributeArray[id].method);
+    for (var i = 0; i < inputs.length; i++) {
+        var val= $(element).parent().find("input[name="+ inputs[i] +"]").val();
+        attributeArray[id].inputs[inputs[i]]={
+            "value":val,
+            "link":null
+        };
+    };
+    div = $(element).parent().parent();
+    $(div).dialog("close");
+    $(div).remove();
+    return false;
 }
 
-function mappingSubmit(element,sindex1,sindex2,dindex1,dindex2){
+function mappingSubmit(element,s_jindex,s_aindex,d_jindex1,d_aindex2){
     alert("element here give submit button in div2")
 }
