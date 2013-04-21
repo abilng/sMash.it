@@ -55,13 +55,40 @@ function createWidgetContent(jsonindex,apiindex){
     return innerhtmlstring; 
 }
 
+function getInputs (json_api,method) {
+    var index = -1;
+    for (var i = 0; i < json_api.methods.length; i++) {
+        if (json_api.methods[i].type == method){
+            index = i;
+            break;
+        }
+    };
+    return json_api.methods[index].inputs
+}
+function getOutputs (json_api,method) {
+    var index = -1;
+    for (var i = 0; i < json_api.methods.length; i++) {
+        if (json_api.methods[i].type == method){
+            index = i;
+            break;
+        }
+    };
+    return json_api.methods[index].outputs
+}
 
-function argumentDiv (json_api,methods) {
+
+function argumentDiv (json_api,method) {
     var div = $("<div><form>");
     var apiName = json_api.name;
-    for (var i = 0; i < json_api.attributes.length; i++) {
-        attribute=json_api.attributes[i];
+    inputs = getInputs(json_api,method);
 
+    for (var i = 0; i < json_api.attributes.length; i++) {
+        
+        var attribute=json_api.attributes[i];
+        if(inputs.indexOf(attribute["name"]) == -1){
+            continue;
+        }
+        
         var attributediv = $("<div class='attribute'>");
         
         var label = $("<label>").text(attribute["name"]);
