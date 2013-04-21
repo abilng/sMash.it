@@ -31,10 +31,28 @@
 </head>
 <body>
     <div class="hresource" style="margin-left: 176px;margin-right: 50px;">
-        <h1>Detect Language<span class="name"></span> </h1>
+        <h1><span class="name">Detect</span> Language </h1>
         <p class="comment">You can detect the language of a text string by sending an HTTP <span class="method">GET</span> request to its URI.</p>
         The URI for a request has the following format:
         <pre class="uri">https://www.googleapis.com/language/translate/v2/detect</pre>
+
+        <div class="method">
+            It use HTTP <span class="type">GET</span> request with:<br>
+            Inputs:
+            <ul>
+                <li class="input">callback</li>
+                <li class="input">key</li>
+                <li class="input">prettyprint</li>
+                <li class="input">q</li>
+            </ul>
+            Produces:
+            <ul>
+                <li class="output">language</li>
+                <li class="output">isReliable</li>
+                <li class="output">confidence</li>
+            </ul>
+        </div>
+
         <h4>parameters</h4>
         <table border="1">
         <thead>
