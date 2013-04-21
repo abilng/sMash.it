@@ -3,6 +3,7 @@ var docurls = new Array();
 
 var base_url = ".";
 
+
 $(document).ready(function(){
 	
 
@@ -20,7 +21,6 @@ $(document).ready(function(){
     	}
     	else alert("Url is invalid");
 	});
-
 });
 
 function addSideBar (name,json,index) {
@@ -41,22 +41,54 @@ function addSideBar (name,json,index) {
     $("#accordion").accordion("refresh");
 }
 
+function getApiName (jsonindex,apiindex) {
+    return docjsons[jsonindex].apis[apiindex].name;
+}
 
 function createWidgetContent(jsonindex,apiindex){
-    var innerhtmlstring = "<p> " + docjsons[jsonindex].apis[apiindex].description + "</p></br><button> Edit arguments </button><select name = 'Method'>";
+    var innerhtmlstring = "<p> " + docjsons[jsonindex].apis[apiindex].description 
+            + "</p></br><button> Edit arguments </button><select name = 'Method'>";
     for(var i=0;i<docjsons[jsonindex].apis[apiindex].methods.length;i++){
-        innerhtmlstring+= "<option value= '" + docjsons[jsonindex].apis[apiindex].methods[i] + "'>" + docjsons[jsonindex].apis[apiindex].methods[i] + "</option>";
+        innerhtmlstring+= "<option value= '" + docjsons[jsonindex].apis[apiindex].methods[i].type + "'>" 
+                    + docjsons[jsonindex].apis[apiindex].methods[i].type + "</option>";
     }
     return innerhtmlstring; 
 }
 
+function getInputs (json_api,method) {
+    var index = -1;
+    for (var i = 0; i < json_api.methods.length; i++) {
+        if (json_api.methods[i].type == method){
+            index = i;
+            break;
+        }
+    };
+    return json_api.methods[index].inputs
+}
+function getOutputs (json_api,method) {
+    var index = -1;
+    for (var i = 0; i < json_api.methods.length; i++) {
+        if (json_api.methods[i].type == method){
+            index = i;
+            break;
+        }
+    };
+    return json_api.methods[index].outputs
+}
 
-function argumentDiv (parent,json_api) {
-    var div = $("<div>");
+
+function argumentDiv (json_api,method) {
+    var div = $("<div><form>");
     var apiName = json_api.name;
-    for (var i = 0; i < json_api.attributes.length; i++) {
-        attribute=json_api.attributes[i];
+    inputs = getInputs(json_api,method);
 
+    for (var i = 0; i < json_api.attributes.length; i++) {
+        
+        var attribute=json_api.attributes[i];
+        if(inputs.indexOf(attribute["name"]) == -1){
+            continue;
+        }
+        
         var attributediv = $("<div class='attribute'>");
         
         var label = $("<label>").text(attribute["name"]);
@@ -130,6 +162,7 @@ function argumentDiv (parent,json_api) {
         attributediv.append(label,input,comment);
         div.append(attributediv);
     };
-    parent.append(div);
+
+    return div;
 }
 

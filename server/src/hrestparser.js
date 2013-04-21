@@ -46,7 +46,13 @@ hrestParser.XPATH = {
         URI : "descendant::*[contains(@class,'uri')]|descendant::*[contains(@class,'url')]",
         COMMENT : "./*[contains(@class,'comment')]",
         ISA : "descendant::*[@rel='hresource-is-a']",
-        METHOD :"descendant::*[contains(@class,'method')]", 
+        
+        METHOD_ROOT :"descendant::*[contains(@class,'method')]",
+        METHOD_TYPE :"descendant::*[contains(@class,'type')]",
+        METHOD_INPUT :"descendant::*[contains(@class,'input')]",
+        METHOD_OUTPUT :"descendant::*[contains(@class,'output')]",
+
+
         ATTRIBUTE : "descendant::*[contains(@class,'attribute')]",
         ATTRIBUTE_COMMENT : "../*[contains(@class,'comment')]",
         ATTRIBUTE_CONSUMER : "../descendant::*[@rel='hresource-consumed-by']",
@@ -137,7 +143,7 @@ hrestParser.prototype = {
         res["type"] = datatype
         res["description"] = comment
         res["consumed-by"] = consumers
-        res["producered-by"] = producers
+        res["produced-by"] = producers
 
         return res;
     },
@@ -157,16 +163,52 @@ hrestParser.prototype = {
             return errors
         }
     },
-    listMethods:function (root) {
+    listMethods:function (root,attributes) {
         httpMethods = ["GET","POST","PUT","DELETE"];
+        attributeNames =[];
+        for (var i = 0; i < attributes.length; i++) {
+            attributeNames.push(attributes[i].name.toUpperCase())
+        };
         var methods = [];
-        var methodNodes = xpath(hrestParser.XPATH.METHOD,root)
+        var methodNodes = xpath(hrestParser.XPATH.METHOD_ROOT,root)
         var methodNode;
+
+        console.log(methodNodes.snapshotLength);
         for (var i = 0; i < methodNodes.snapshotLength; i++) {
+
+            var inputs = new Array();
+            var outputs = new Array();
+
             methodNode = methodNodes.snapshotItem(i);
-            method = methodNode.textContent.trim().toUpperCase();
+            method = xpath(hrestParser.XPATH.METHOD_TYPE,methodNode,XPathResult.STRING_TYPE).stringValue
+            //method = xpath(hrestParser.METHOD_TYPE,methodNode).snapshotItem(0).textContent.trim().toUpperCase();
+            //method ="GET"
             if(httpMethods.indexOf(method) != -1){
-                methods.push(method);
+                console.log(method)
+
+                inputNodes=xpath(hrestParser.XPATH.METHOD_INPUT,methodNode);
+                for (var j = 0; j < inputNodes.snapshotLength; j++) {
+                    var input = inputNodes.snapshotItem(j).textContent.trim();
+                    var index = attributeNames.indexOf(input.toUpperCase())
+                    if( index != -1){
+                        inputs.push(attributes[index].name)
+                    }
+                }
+
+                outputNodes=xpath(hrestParser.XPATH.METHOD_OUTPUT,methodNode);
+                for (var j = 0; j < outputNodes.snapshotLength; j++) {
+                    var output = outputNodes.snapshotItem(j).textContent.trim();
+                    var index = attributeNames.indexOf(output.toUpperCase())
+                    if( index != -1){
+                        outputs.push(attributes[index].name)
+                    }
+                }
+
+                methods.push({ 
+                    "type":method,
+                    "inputs":inputs,
+                    "outputs":outputs
+                    });
             }
         }
         return methods;
@@ -212,7 +254,6 @@ hrestParser.prototype = {
                 opformat = "json";
             }
 
-            var methods = this.listMethods(div);
             
             var attributes =[]
             var attributeNodes = xpath(hrestParser.XPATH.ATTRIBUTE,div);
@@ -220,6 +261,8 @@ hrestParser.prototype = {
                 attributeNode = attributeNodes.snapshotItem(j);
                 attributes.push(this.attributeProp(attributeNode));  
             };
+
+            var methods = this.listMethods(div,attributes);
 
             errors = this.listErrors(div);
             var app = {};

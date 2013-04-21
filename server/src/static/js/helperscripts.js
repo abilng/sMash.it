@@ -20,9 +20,10 @@ function init()
                                     var aindex = parseInt(indexstr.charAt(indexstr.length-3));
                                     //alert("j: " + jindex);
                                     var con = createWidgetContent(jindex,aindex);
+                                    var title = getApiName(jindex,aindex);
                                     //alert($(ui.draggable).attr("id"));
     							  	//$(this).find("p").html("position left : " + parseInt(pos.left) + " top : " + parseInt(pos.top));
-    							  	insertDiv(this,pos,con);
+    							  	insertDiv(pos,title,con,jindex,aindex);
     							  }
     							});
 }
@@ -58,7 +59,7 @@ var inendpointOptions = {
 };
 
 jsPlumb.ready(function() {
-        jsPlumb.setRenderMode(jsPlumb.CANVAS);
+        jsPlumb.setRenderMode(jsPlumb.SVG);
         jsPlumb.importDefaults({
         Connector : ["Bezier",{ curviness: 200}],
         Endpoint : ["Dot", {radius: 10}],
@@ -70,12 +71,14 @@ jsPlumb.ready(function() {
 //    jsPlumb.draggable($(".widget"));
 })
 
-function insertDiv(element,pos,cont){
+function insertDiv(pos,title,cont,jindex,aindex){
             var obj = new Date();
-            var Div = $('<div>', { id: "X" + obj.getSeconds() },
-             { class: 'widget' }).css({ position:'absolute', left: parseInt(pos.left) +'px', top:parseInt(pos.top)+'px'})
+            var Div = $('<div>', { id: "widget-"+jindex +"-"+ aindex +"-" + obj.getSeconds() },
+             { class: 'widget' }).css({
+              position:'absolute', left: parseInt(pos.left) +'px', 
+              top:parseInt(pos.top)+'px'});
 
-            var head = $("<div class='widget-head'>").append($("<b>").text("title"),
+            var head = $("<div class='widget-head'>").append($("<b>").text(title),
                         $('<a class="close" href="#" onclick="closeWidget.call(this)">'));
             var content = $('<div class="widget-content" style="display: block;">').append(cont);
 
