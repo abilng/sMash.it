@@ -128,6 +128,7 @@
 	z-index:21;
 }
 
+
 .widget button{
 	float: left;
 }
@@ -136,3 +137,20 @@
 	width : 60px;
 	float: right;
 }
+
+/* Attribute popup */
+.attribute {
+	padding-top: 10px;
+}
+.attribute input{
+	margin-left: 120px;
+}
+.attribute label {
+	padding-left: 5px;
+	font-weight: bold;
+}
+.attribute p{
+	padding-left: 20px;
+	padding-right: 10px;
+}
+

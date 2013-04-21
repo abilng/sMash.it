@@ -34,19 +34,21 @@ function processResponse(json)
  xw.writeAttributeString('rdf:about',baseurl);
  for(i=0;i<obj.apis.length;i++) {
    var Name=obj.apis[i].name; //check conflict
-   xw.writeElementString('rdf:name',Name);
+   xw.writeElementString('rdfs:label',Name);
    var docUrl=obj.apis[i].doc-url;
    xw.writeElementString('rest:doc-url',docUrl);
    var uri=obj.apis[i].uri;
-   xw.writeElementString('rest:uri',uri);
+   xw.writeElementString('rdfs:Resource',uri);
    var superclass=obj.apis[i].is-a.doc-uri;
    var superclassid=obj.apis[i].is-a.name;
-   xw.writeStartElement('rest:subclassof');
+   xw.writeStartElement('rdfs:subclassof');
    xw.writeAttributeString('rdf:ID',superclassid);
-   xw.writeElementString('rest:uri',superclass);
+   xw.writeElementString('rdfs:Resource',superclass);
    xw.writeEndElement();
+   if(!listContains(superclass))
+     resources.push(superclass);
    var description=obj.apis[i].description;
-   xw.writeElementString('rest:description',description);
+   xw.writeElementString('rdfs:comment',description);
    for(j=0;j<obj.apis[i].attributes.length;j++) {
      xw.writeStartElement('rest:attribute');
      if(obj.apis[i].attributes[j].read-only==true)
@@ -60,21 +62,21 @@ function processResponse(json)
      if(obj.apis[i].attributes[j].guid==true)
        xw.writeAttributeString('rest:guid','true');
      Name=obj.apis[i].attributes[j].name;
-     xw.writeElementString('rest:name',Name);
+     xw.writeElementString('rdfs:label',Name);
      var type=obj.apis[i].attributes[j].type;
      if(type==NULL)
        xw.writeElementString('rdf:type','Undefined');
      else
        xw.writeElementString('rdf:type',type);
      description=obj.apis[i].attributes[j].description;
-     xw.writeElementString('rest:description',description);
+     xw.writeElementString('rdfs:comment',description);
      for(k=0;k<obj.apis[i].attributes[j].consumed-by.length;k++) {
        var attribute=obj.apis[i].attributes[j].consumed-by[k].attribute;
        var consumer=obj.apis[i].attributes[j].consumed-by[k].uri;
        if(!listContains(consumer))
          resources.push(consumer);
        consumer=consumer+'\\#'+attribute;
-       xw.writeElementString('rest:consumedby',consumer);
+       xw.writeElementString('rest:consumedBy',consumer);
      }
      for(k=0;k<obj.apis[i].attributes[j].produced-by.length;k++) {
        var attribute=obj.apis[i].attributes[j].produced-by[k].attribute;
@@ -82,7 +84,7 @@ function processResponse(json)
          resources.push(producer);
        var producer=obj.apis[i].attributes[j].produced-by[k].uri;
        producer=producer+'\\#'+attribute;
-       xw.writeElementString('rest:producedby',producer);
+       xw.writeElementString('rest:producedBy',producer);
      }
      xw.writeEndElement(); 
    }
@@ -115,6 +117,7 @@ function processResources(url)
  xw.writeStartDocument();
  xw.writeStartElement('rdf:RDF');
  xw.writeAttributeString('xmlns:rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+ xw.writeAttributeString('xmlns:rfds','http://www.w3.org/2000/01/rdf-schema#');
  xw.writeAttributeString('xmlns:rest','http://purl.org/dc/elements/1.1/');
 
 /* Generate Graph */
