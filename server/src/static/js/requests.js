@@ -416,7 +416,7 @@ function requestGraph(startnodes){
         var node = ids.pop();
         if(calledids.indexOf(node)!=-1) 
             continue;
-        var url = docjsons[attributeArray[node].apiindex].apis[attributeArray[node].jindex].uri;
+        var url = docjsons[attributeArray[node].jindex].apis[attributeArray[node].apiindex].uri;
         var data = "" ;
         var reqmethod = attributeArray[node].method;
         var keys = Object.keys(attributeArray[node].inputs);
