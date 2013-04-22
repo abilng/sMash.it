@@ -86,7 +86,7 @@ jsPlumb.bind("jsPlumbConnection", function (CurrentConnection) {
         $('#'+dst).find("select").attr("disabled", true);
         
         setMethodArray(src,smethod);
-        setMethodArray(dst,smethod);
+        setMethodArray(dst,dmethod);
         //alert("-"+smethod+dmethod);
         var mapdiv = mappingDiv(src,smethod,dst,dmethod);
         $('body').append(mapdiv);
@@ -103,6 +103,9 @@ jsPlumb.bind("jsPlumbConnectionDetached",function (CurrentConnection) {
    var src = CurrentConnection.connection.sourceId;
    var dst = CurrentConnection.connection.targetId;
    rmlinkAttributeArray(src,dst); 
+   //$('#'+src).find("select").attr("disabled", true);
+   //$('#'+dst).find("select").attr("disabled", true);
+        
 });
 
 

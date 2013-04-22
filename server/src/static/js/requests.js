@@ -27,6 +27,26 @@ $(document).ready(function(){
                     modal: true,
                     })
 	});
+    $('#generate').on("click",function(event) {
+        var keys = Object.keys(attributeArray);
+        var startnodes = new Array()
+        for (k in keys) {
+            var id = keys[k];
+            if(attributeArray[id].isStartNode){
+                startnodes.push(id);
+            }
+        }
+        if(startnodes.length !=0 ){
+            requestGraph(startnodes)
+        }
+    });
+    $('#gen_rdf').on("click",function(event) {
+        var url = $('#docurl').val();
+        var pattern = /(file|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        if (pattern.test(url)) {
+            window.location = base_url+'/rdf?url=' + url;
+        }
+    });
 });
 
 function addtoAttributeArray (jindex,aindex,sec) {
@@ -37,6 +57,7 @@ function addtoAttributeArray (jindex,aindex,sec) {
     obj['method'] = "";
     obj['inputs'] = new Object();
     obj['outputs'] = new Object();
+    obj['isStartNode'] = true;
     attributeArray[id] = obj;
 }
 
@@ -75,6 +96,7 @@ function makelinkAttributeArray(swidgetid,arg1,dwidgetid,arg2){
         "id":dwidgetid,
         "arg":arg2
     };
+    attributeArray[dwidgetid].isStartNode = false;
     attributeArray[dwidgetid].inputs[arg2].link = {
         "id":swidgetid,
         "arg":arg1
@@ -97,6 +119,15 @@ function rmlinkAttributeArray(swidgetid,dwidgetid){
             attributeArray[dwidgetid].inputs[inputname].link = null;
         }
     }
+
+    for (k in ikeys) {
+        var inputname = ikeys[k];
+        var inputObject = attributeArray[dwidgetid].inputs[inputname];
+        if(inputObject.link!=null){
+            return
+        }
+    }
+    attributeArray[dwidgetid].isStartNode = true;
 }
 
 
@@ -380,6 +411,7 @@ function requestGraph(startnodes){
     for (var i = 0; i < startnodes.length; i++) {
         ids.push(startnodes[i]);
     };
+    $('#rmodal').empty();
     while(ids.length!=0){
         var node = ids.pop();
         if(calledids.indexOf(node)!=-1) 
