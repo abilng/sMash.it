@@ -344,3 +344,41 @@ function mappingSubmit(element,swidgetid,dwidgetid){
     return false;
 
 }
+
+function requestGraph(startnodes){
+    var ids = new Array();
+    var calledids = new Array();
+    for (var i = 0; i < startnodes.length; i++) {
+        ids.push(startnodes[i]);
+    };
+    while(ids.length!=0){
+        var node = ids.pop();
+        if(calledids.indexOf(node)!=-1) 
+            continue;
+        var url = docjsons[attributeArray[node].apiindex].apis[attributeArray[node].jindex].uri;
+        var data = "" ;
+        var reqmethod = attributeArray[node].method;
+        var keys = Object.keys(attributeArray[node].inputs);
+        for (k in keys) {
+            var inputname = keys[k];
+            var inputObject = attributeArray[node].inputs[inputname];
+            if(inputObject.link==null){
+                data += inputname+"="+inputObject.value+"&";
+            }else{
+                var pred_id = inputObject.link.id;
+                var pred_arg = inputObject.link.arg;
+                data += inputname+"={"+calledids.indexOf(pred_id)+" @ "+pred_arg+"}&";
+            }
+        };
+        console.log(reqmethod+"  "+url+"?"+data);
+        calledids.push(node);
+        var okeys = Object.keys(attributeArray[node].outputs);
+        for(k in okeys){
+            var outputname = okeys[k]
+            var outputObject = attributeArray[node].outputs[outputname];
+            if(outputObject.link != null) {
+                ids.push(outputObject.link.id);
+            }
+        }
+    }
+}
