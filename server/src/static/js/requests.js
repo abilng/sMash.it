@@ -80,6 +80,24 @@ function makelinkAttributeArray(swidgetid,arg1,dwidgetid,arg2){
         "arg":arg1
     };
 }
+function rmlinkAttributeArray(swidgetid,dwidgetid){
+    var okeys = Object.keys(attributeArray[swidgetid].outputs);
+    for (k in okeys) {
+        var outputname = okeys[k];
+        var outputObject = attributeArray[swidgetid].outputs[outputname];
+        if(outputObject.link!=null && outputObject.link.id == dwidgetid ){
+            attributeArray[swidgetid].outputs[outputname].link = null;
+        }
+    }
+   var ikeys = Object.keys(attributeArray[dwidgetid].inputs);
+    for (k in ikeys) {
+        var inputname = ikeys[k];
+        var inputObject = attributeArray[dwidgetid].inputs[inputname];
+        if(inputObject.link!=null && inputObject.link.id == swidgetid ){
+            attributeArray[dwidgetid].inputs[inputname].link = null;
+        }
+    }
+}
 
 
 function addSideBar (name,json,index) {
@@ -156,6 +174,11 @@ function argumentDiv (id,method) {
         if(inputs.indexOf(attribute["name"]) == -1){
             continue;
         }
+         if(attributeArray[id].inputs[attribute["name"]]){
+            if(attributeArray[id].inputs[attribute["name"]].link!=null){
+                continue;
+            }
+        }
         
         var attributediv = $("<div class='attribute'>");
         
@@ -229,7 +252,6 @@ function argumentDiv (id,method) {
 
         if(attributeArray[id].inputs[attribute["name"]]){
             if(attributeArray[id].inputs[attribute["name"]].value!=null){
-                alert(attributeArray[id].inputs[attribute["name"]].value);
                 $(input).attr("value",attributeArray[id].inputs[attribute["name"]].value.toString())
             }
         }
