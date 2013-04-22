@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY bibo "http://purl.org/ontology/bibo/">
+<!ENTITY foaf "http://xmlns.com/foaf/0.1/">
+<!ENTITY sioc "http://rdfs.org/sioc/ns#">
+<!ENTITY owl "http://www.w3.org/2002/07/owl#">
+]>
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+ xmlns:sioc="http://rdfs.org/sioc/ns#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:virtrdf="http://www.openlinksw.com/schemas/XHTML#"
+ xmlns:rest="xyz.com/rest#"
+ version="1.0">
+  <xsl:output method="xml" indent="yes"/>
+  <xsl:param name='docurl'>failure</xsl:param>
+
+<!--       MAIN       -->
+  <xsl:template match="/">
+    <rdf:RDF>
+      <xsl:apply-templates select="html/head"/>
+    </rdf:RDF>
+  </xsl:template>
+
+<!--          -->
+  <xsl:template match="html/head">
+  <!--
+    FOR TITLE:
+
+  	<xsl:apply-templates select="title"/>
+  -->
+    <xsl:for-each select="//div[contains(@class,'hresource')]">
+  	 <xsl:apply-templates mode="hresource" select="."/>
+    </xsl:for-each>
+  </xsl:template>
+
+<!--    FOR TITLE  -->
+	<xsl:template match="title">
+		<dc:title>
+      	<xsl:value-of select="."/>
+    </dc:title>
+  </xsl:template>
+  	
+<!-- FOR EACH HRESOURCE TAG  -->
+  <xsl:template mode="hresource" match="*">
+  		<rest:Service>
+        <xsl:attribute name="rdf:ID"> <xsl:value-of select="./*[contains(@class,'name')]"/></xsl:attribute>
+  			<xsl:attribute name="rest:doc-url"><xsl:value-of select='($docurl)'/></xsl:attribute>
+        <rdf:Uri>
+  				<xsl:value-of select="./*[contains(@class,'uri')]|./*[contains(@class,'url')]"/>
+  			</rdf:Uri>
+
+        <!--    SUBCLASS      -->
+        
+        <xsl:if test="./*[@rel='hresource-is-a']">
+          <rdfs:subClassOf>
+            <xsl:attribute name="rdf:ID"> <xsl:value-of select="//*[@rel='hresource-is-a']"/></xsl:attribute>
+            <rdf:Uri>
+              <xsl:value-of select="./*[@rel='hresource-is-a']/@href"/>
+            </rdf:Uri>
+          </rdfs:subClassOf>
+        </xsl:if>
+
+        <!-- COMMENT     -->
+        <xsl:if test="./*[contains(@class,'comment')]">
+          <rdfs:comment>
+            <xsl:value-of select="./*[contains(@class,'comment')]"/>
+          </rdfs:comment>
+        </xsl:if>
+
+        <xsl:if test="./*[contains(@class,'hresource-opformat')]">
+          <rest:opformat>
+            <xsl:value-of select="./*[contains(@class,'hresource-opformat')]"/>
+          </rest:opformat>
+        </xsl:if>
+  			
+        <xsl:for-each select="descendant::code[contains(@class,'attribute')]">
+          <xsl:apply-templates mode="attribute" select="."/>
+  			</xsl:for-each>
+
+        <xsl:for-each select="descendant::*[contains(@class,'hresource-error')]">
+          <xsl:apply-templates mode="error" select="."/>
+        </xsl:for-each>
+
+		</rest:Service>
+	</xsl:template>
+
+
+  <xsl:template mode="error" match="*">
+    <rest:error>
+      <xsl:attribute name="rest:code">
+        <xsl:value-of select="descendant::code[contains(@class,'error')]"/>
+      </xsl:attribute>
+      <rdfs:comment>
+        <xsl:value-of select="./*[contains(@class,'comment')]"/>
+      </rdfs:comment>
+    </rest:error>
+  </xsl:template>
+
+
+  <xsl:template mode="attribute" match="*">
+    <rest:attribute>
+      <xsl:if test="contains(@class,'read-only')">
+        <xsl:attribute name="rest:readonly">true</xsl:attribute>
+      </xsl:if>
+      <xsl:if test="contains(@class,'required')">
+        <xsl:attribute name="rest:required">true</xsl:attribute>
+      </xsl:if>
+      <xsl:if test="contains(@class,'write-once')">
+        <xsl:attribute name="rest:writeonce">true</xsl:attribute>
+      </xsl:if>
+      <xsl:if test="contains(@class,'queryable')">
+        <xsl:attribute name="rest:queryable">true</xsl:attribute>
+      </xsl:if>
+      <xsl:if test="contains(@class,'guid')">
+        <xsl:attribute name="rest:guid">true</xsl:attribute>
+      </xsl:if>
+      <rdf:name>
+        <xsl:value-of select="."/>
+      </rdf:name>
+      <rdf:type>
+        <xsl:choose>
+          <xsl:when test="../descendant::*[contains(@class,'hresource-datatype')]">
+            <xsl:value-of select="../descendant::*[contains(@class,'hresource-datatype')]"/>
+          </xsl:when>
+           <xsl:otherwise>Not-Defined</xsl:otherwise>
+        </xsl:choose>
+      </rdf:type>
+      <rdfs:comment>
+        <xsl:value-of select="../descendant::*[contains(@class,'comment')]"/>
+      </rdfs:comment>
+
+      <!-- CONSUMERS  -->
+
+      <xsl:for-each select="../descendant::*[@rel='hresource-consumed-by']">
+        <rest:consumedby>
+          <xsl:attribute name="rdf:ID"> <xsl:value-of select="."/></xsl:attribute>
+          <xsl:value-of select="@href"/>
+        </rest:consumedby>
+      </xsl:for-each>
+
+      <!-- PRODUCERS  -->
+      
+      <xsl:for-each select="../descendant::*[@rel='hresource-produced-by']">
+        <rest:producedby>
+          <xsl:attribute name="rdf:ID"> <xsl:value-of select="."/></xsl:attribute>
+          <xsl:value-of select="@href"/>
+        </rest:producedby>
+      </xsl:for-each>
+
+
+    </rest:attribute>
+  </xsl:template>
+
+</xsl:stylesheet>
