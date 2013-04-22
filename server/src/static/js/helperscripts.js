@@ -97,7 +97,13 @@ jsPlumb.bind("jsPlumbConnection", function (CurrentConnection) {
                         modal: true,
                       })
         $(mapdiv).dialog("open");
-    });
+});
+
+jsPlumb.bind("jsPlumbConnectionDetached",function (CurrentConnection) {
+   var src = CurrentConnection.connection.sourceId;
+   var dst = CurrentConnection.connection.targetId;
+   rmlinkAttributeArray(src,dst); 
+});
 
 
 
