@@ -35,7 +35,44 @@ function addtoAttributeArray (jindex,aindex,sec) {
 }
 
 function setMethodArray(id,method) {
+    
+    if(attributeArray[id].method == method)
+        return;
+
+    var splitstr = id.split("-");
+    var jindex = parseInt(splitstr[1])
+    var aindex = parseInt(splitstr[2])
+    var json_api = docjsons[jindex].apis[aindex];
+
+
     attributeArray[id].method = method;
+
+    inputs = getInputs(json_api,method);
+    outputs = getOutputs(json_api,method);
+
+    for (var i = 0; i < inputs.length; i++) {
+        attributeArray[id].inputs[inputs[i]]={
+            "value":null,
+            "link":null
+        };
+    };
+
+    for (var i = 0; i < outputs.length; i++) {
+        attributeArray[id].outputs[outputs[i]]={
+            "link":null
+        };
+    };
+}
+
+function makelinkAttributeArray(swidgetid,arg1,dwidgetid,arg2){
+    attributeArray[swidgetid].outputs[arg1].link = {
+        "id":dwidgetid,
+        "arg":arg2
+    };
+    attributeArray[dwidgetid].inputs[arg2].link = {
+        "id":swidgetid,
+        "arg":arg1
+    };
 }
 
 
@@ -235,7 +272,7 @@ function mappingDiv(src,src_method,dst,dest_method){
     mappings.append(m);
     mappingdiv.append(mappings);
     mappingdiv.append(addbtn);
-    mappingdiv.append($("<input type=button value='Done' onclick='mappingSubmit(this,\""+srcindex+"\",\""+dstindex+"\")'>"));
+    mappingdiv.append($("<input type=button value='Done' onclick='mappingSubmit(this,\""+src+"\",\""+dst+"\")'>"));
     return mappingdiv;
 }
 
@@ -275,10 +312,7 @@ function argumentsSubmit(element,id){
         attributeArray[id].method);
     for (var i = 0; i < inputs.length; i++) {
         var val= $(element).parent().find("input[name="+ inputs[i] +"]").val();
-        attributeArray[id].inputs[inputs[i]]={
-            "value":val,
-            "link":null
-        };
+        attributeArray[id].inputs[inputs[i]].value=val;
     };
     div = $(element).parent().parent();
     $(div).dialog("close");
@@ -286,7 +320,27 @@ function argumentsSubmit(element,id){
     return false;
 }
 
-function mappingSubmit(this,swidget,dwidget){
+function mappingSubmit(element,swidgetid,dwidgetid){
     //alert("element here give submit button in div2")
+    var srcindex = swidgetid.split("-");
+    var dstindex = dwidgetid.split("-");
     
+    var src_index1 = srcindex[1];
+    var src_index2 = srcindex[2];
+
+    var dst_index1 = dstindex[1];
+    var dst_index2 = dstindex[2];
+
+    var div = $(element).parent();
+
+    $(div).find(".m").each(function (index,element) {
+        arg1 = $(element).find("select")[0].value
+        arg2 = $(element).find("select")[1].value
+        makelinkAttributeArray(swidgetid,arg1,dwidgetid,arg2)
+    })
+
+    $(div).dialog("close");
+    $(div).remove();
+    return false;
+
 }

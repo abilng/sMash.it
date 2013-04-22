@@ -82,6 +82,11 @@ jsPlumb.bind("jsPlumbConnection", function (CurrentConnection) {
         var dst = CurrentConnection.connection.targetId;
         var smethod = $('#'+src).find("select").val();
         var dmethod = $('#'+dst).find("select").val();
+        $('#'+src).find("select").attr("disabled", true);
+        $('#'+dst).find("select").attr("disabled", true);
+        
+        setMethodArray(src,smethod);
+        setMethodArray(dst,smethod);
         //alert("-"+smethod+dmethod);
         var mapdiv = mappingDiv(src,smethod,dst,dmethod);
         $('body').append(mapdiv);
