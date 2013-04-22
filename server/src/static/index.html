@@ -29,8 +29,9 @@
           			</button>
           			<a class="brand" href="#">sMash.it</a>
             		<form class="navbar-form pull-right" action="#">
-              			<input class="span7" id="docurl" type="text" placeholder="API Doc URL">
-              			<button type="submit" id="api_load"  class="btn">Load it !!!</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              			<input class="span6" id="docurl" type="text" placeholder="API Doc URL">
+              			<button type="submit" id="api_load"  class="btn">Load it !!!</button>&nbsp&nbsp
+                    <button type="submit" id="gen_rdf"  class="btn">Generate RDF</button>&nbsp&nbsp
               			<button type="submit" id="generate" class="btn">Generate >></button>
             		</form>    
         		</div>
@@ -49,6 +50,9 @@
      		<div class="workbench span9" id="wbench" style="position: absolute; left: auto; top:50px; right: 5px; height: 500%; width:1140px;">
            
      		</div>
+        <div class="resultmodal" id="rmodal">
+          <!-- Dynamically populated with results -->
+        </div>
      	</div>
 
 	</body>

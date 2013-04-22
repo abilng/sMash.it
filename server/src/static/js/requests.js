@@ -20,6 +20,12 @@ $(document).ready(function(){
 			}
     	}
     	else alert("Url is invalid");
+    $("#rmodal").dialog({
+                    autoOpen: false,
+                    height: 500,
+                    width: 500,
+                    modal: true,
+                    })
 	});
 });
 
@@ -348,6 +354,7 @@ function mappingSubmit(element,swidgetid,dwidgetid){
 function requestGraph(startnodes){
     var ids = new Array();
     var calledids = new Array();
+    var j = 0;
     for (var i = 0; i < startnodes.length; i++) {
         ids.push(startnodes[i]);
     };
@@ -370,7 +377,9 @@ function requestGraph(startnodes){
                 data += inputname+"={"+calledids.indexOf(pred_id)+" @ "+pred_arg+"}&";
             }
         };
-        console.log(reqmethod+"  "+url+"?"+data);
+        //console.log(reqmethod+"  "+url+"?"+data);
+        $("#rmodal").append("<p> => "+j+" : "+reqmethod+"  "+url+"?"+data+"</p></br>");
+        j++;
         calledids.push(node);
         var okeys = Object.keys(attributeArray[node].outputs);
         for(k in okeys){
@@ -381,4 +390,5 @@ function requestGraph(startnodes){
             }
         }
     }
+    $("#rmodal").dialog("open");
 }
