@@ -30,7 +30,7 @@ var RDFCreator = function (response){
    this.xw.startDocument();
    this.xw.startElement('rdf:RDF');
    this.xw.writeAttribute('xmlns:rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#');
-   this.xw.writeAttribute('xmlns:rfds','http://www.w3.org/2000/01/rdf-schema#');
+   this.xw.writeAttribute('xmlns:rdfs','http://www.w3.org/2000/01/rdf-schema#');
    this.xw.writeAttribute('xmlns:rest','http://purl.org/dc/elements/1.1/');
 };
 
