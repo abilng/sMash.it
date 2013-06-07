@@ -1,0 +1,28 @@
+
+\chapter{SCOPE OF THE PROJECT}
+\begin{spacing}{1.5}
+
+The main feature of this new approach is the automation of mashup creation. It enables automatic  discovery and composition of services.The existence of such a standard technique can make the wealth of resources available on the Internet accessible to machines, enabling the creation of intelligent software agents that can get a lot of work done with no to minimal intervention from humans.
+
+The process of creating mashups is a manual task  which require a lot of human interaction with the existing standards. There exists  two popular mashup creators ;Yahoo Pipes\cite{pip} and IFTTT\cite{ift}.
+
+Yahoo pipes is a free online service to aggregate,manipulate and mashup content from around the web. Modules can be dragged onto its interface and link between them by connecting output of one service as input to other services. It is developed to assist non-technical users to create mashups. You can create your own custom RSS feeds  with Yahoo Pipe that pull in content from a variety of sources and filter it so that you only see the most relevant news stories. It requires no plugins or coding.
+
+However Yahoo Pipes faces many drawbacks. It cannot create a mashup between any pair  of services. It works well with a defined set of web services like RSS feeds etc. Pipes is being very buggy lately and has stopped saving new pipes these days. Also  some times it is very slow in working. A typical operation with Yahoo Pipes takes atleast 200 ms. Fetching an RSS feed with a filter will normally take 400 ms in Yahoo Pipe. Also Yahoo Pipes lack processing power and cannot works well with website from far east. It fails to generate results while processing complex regex from far multiple locations, with hundreds of posts every minutes.
+
+IFTTT is a service that lets you create powerful connections with one simple statement: {\it “if this then that “}.The “this” part of a recipe is a trigger. The that part of a recipe is an action. The combination of a trigger and an action from a customer's active channels are called recipes. Pieces of data from trigger a are called Ingredients. The service offers triggers and actions for 61 channels such as Twitter,Foursquare,Flickr and Box etc.
+
+There are two types of recipes, Personal recipes and shared recipes. Personal Recipes are a combination of a Trigger and an Action from your active Channels.Personal Recipes can be turned on and off. When turned back on, they pick up as if you had just created them. Personal recipes check for new trigger data every 15 minutes. Shared recipes are useful templates shared by the IFTTT community. By combining IFTTT with other services such as Yahoo Pipes  one can build elaborate systems that enable easier consumption of content from a variety of sources.
+
+The mashups in IFTTT are manually coded by contributers. IFTTT has  lots of mashups publicly shared in its store. But the process of creating mashups is still not automated with IFTTT. All we can do with it is to reuse the shared mashups. Since IFTTT only scans Triggers every 15 minutes, so there is a delay between the triggers and actions. The main cited drawbacks of IFTTT are
+
+\begin{itemize}
+\item {\bf Ifttt can’t make compound decisions}. You can setup a a task to send you an email when tomorrow’s weather is below 40 degrees. You can also set up a task to email when the weather calls for rain. But if you want to get an email when BOTH of these happen, that can’t be done at this writing.
+\item {\bf Ifttt has no memory}. It can’t save any information during a task. For example, if you'd  like a task that keeps track of all of the people who followed you on Twitter in the past week, and then includes them all in a thank you tweet at the end of the week. Right now, the best you can do is to instantly reply to any new follower.
+\item {\bf Ifttt does not play nice with others}. The system works well when reacting to real human events and triggers, but not so well when interacting with other automated services.
+\end{itemize}
+
+Also there is another tool from google to create mashups called Google Mashup Editor(GME).The Google Mashup Editor is an incredibly powerful tool for rapid testing and deployment of mashup concepts, particularly those that utilize Google services or products. This opens the space to all those developers who don't have their own servers to play on and gives them a framework to kickstart development. Compared to Yahoo Pipes Google Mashup Editor wins in terms of power and flexibility. But GME has been discontinued it service(It is migrated to Google App Engine).
+
+So by considering all the drawbacks of the existing approaches we can clearly specify the requirements of a new design. The new design automates mashup creation and user interaction is very less with this approach. The user interaction is needed only during automatic client generation to give inputs for invoking a particular service and to specify the output needed, which in any case cannot be avoided. Also the scalability and performance issues of Yahoo Pipes are addressed in the new design by using a Node.js server in the user system which also finds a solution to make cross domain calls. If a large amount of data is needed to be processed then, the Node.js server package can be moved to a high performance machine independent of the client side code.
+\end{spacing}

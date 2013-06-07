@@ -1,0 +1,35 @@
+\chapter{INTRODUCTION}
+\begin{spacing}{1.5}
+Semantic web is a collective movement towards adding semantics or meaning to the data available on the internet thus making them machine readable. Data with semantics will be key in the future web where human interaction can be reduced for exploring and using this information. While the vision of a Semantic Web has been around for more than fifteen years it still has a long way to go before mainstream adoption will be achieved. One of the reasons for that is, the fear of average Web developers to use Semantic Web technologies. The reasons for this are manifold and should be further researched. Some developers are overwhelmed by the (perceived) complexity or think they have to be AI experts to make use of the Semantic Web and simply shut down when they hear the word Ontology. Others are still  waiting for a killer application making it a classical chicken- and-egg problem. A common perception is that the Semantic Web is a disruptive technology which makes it a show-stopper for enterprises needing to evolve their systems and build upon existing infrastructure investments. Obviously some developers are also just reluctant to use new technologies. 
+
+There have been two main initiatives towards adding semantics to the web: Linked Data and semantic annotations. 
+
+Linked Data is an effort to create a web of data, parallel to the web of documents - the web we know and use today\cite{1}. Since HTML, the language of the web was deemed insufficient to accurately and expressively describe strongly typed relationships between data, a new XML based language named RDF (Resource Description Framework) was suggested\cite{2}. RDF documents define relationships in the form of subject-predicate-object triplets and can thus model a wide variety of links. RDF documents are supported by schemas written in either RDFS\cite{3}or OWL\cite{4}\cite{5}.
+
+While Linked Data is very expressive when it comes to describing relationships, it has a downside as well: these descriptions are separate from the current web that humans use and leaves developers with another artifact to develop and maintain. This has lead into development of techniques that try to integrate the human web and the machine-readable web into one single entity. Two important standards developed in the area of semantic annotations are Microformats\cite{6},RDFa\cite{7}\cite{8} and SEREDASj\cite{14}. 
+
+\section{Semantic Web Services} 
+The concept of semantic web has also been applied to web services, using semantic web techniques to 
+\begin{itemize}
+\item Describe web services themselves and
+\item Add meaning to the results provided by web services to make them machine 
+readable and to increase the utility of the information gathered. 
+\end{itemize}
+
+Most of the research in semantic web services has been around SOAP based services. These are the "conventional" web services that have been the prime solution until a few years back. While SOAP packs a lot of power into accurately describing various aspects of a service, such verbosity is often undesired and leaves developers with a high entry-barrier that most chose not to take. 
+
+The recent attention gained by RESTful services\cite{9} – an entirely different service architecture - is a natural response to the prohibitive complexity of developing and describing SOAP based services. The REST philosophy prioritizes simplicity over verbosity and works over the existing HTTP infrastructure. Resources are represented as URLS and CRUD operations are defined by the POST, GET, PUT and DELTE HTTP methods respectively. Its resemblance to the way the web works has resulted in widespread adoption since the days of Web 2.0.
+
+The major problem of RESTful services is that no agreed machine-readable description format exists to document them. All the required information of how to invoke them and how to interpret the various resource representations is communicated out-of-band by human-readable documentations. This usually does not cause any problems in the human Web since humans inherently understand the representations and are thus able to quickly adapt to new control flows (e.g: a change in the order sequence or a new login page to access the service). Machines on the other hand have huge problems to understand such representations; just as disabled users sometimes have. A blind user for instance cannot make any use of information contained in graphics. Machines suffer even more from such usability and accessibility problems. 
+
+Currently machine-to-machine communication is often based on static knowledge and tight coupling to resolve those issues. The challenge is thus to bring some of the human Web‘s adaptivity to the Web of machines to allow the building of loosely coupled, reliable, and scalable systems. After all, a Web service can be seen as a special Web page meant to be consumed by an autonomous program as opposed to a human being. The Web already supports machine-to-machine communication, what‘s not machine-processable about the current Web is not the protocol (HTTP), it is the content. 
+
+Some research has gone into utilizing semantic web techniques specifically for RESTful services. These solutions suffer from either of the two problems. 
+
+\begin{itemize}
+\item They are generalizations of existing mechanisms to describe SOAP services. REST being an entirely different architecture, such an approach results in a lot of unwanted markup and code. This conversion to another architecture steals some of the implicit properties of RESTful architecture like simplicity, focus on resources rather than services etc.
+\item These solutions require an external description, which has to be created and maintained by the developer adding to the effort required. 
+\end{itemize}
+
+Further, the solutions for describing RESTful services do not take into account the possibilities of automatic discovery and composition of services. Papers had been published on new proposals that work together with one of these markup languages to provide description. However, these solutions usually suffer from the same issues as the markup languages - they are mainly aimed at SOAP based services and do not fit well into the REST architecture.
+\end{spacing}

@@ -1,0 +1,205 @@
+\documentclass[12pt]{report}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[acronym]{glossaries}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage{emptypage}
+\usepackage{mathptmx}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[margin=1.5in,topmargin=0.5in]{geometry}
+\usepackage{inconsolata}
+%\usepackage{nopageno}
+
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{30pt}
+%\makeglossaries
+
+\pagestyle{fancy}
+\fancyhead[C]{}
+\fancyhead[L]{}
+\fancyhead[R]{\it Adding Semantics to RESTful Web Services}
+
+\fancyfoot[L]{\it Department of Computer Science \& Engineering, CET 2013}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+
+
+\begin{document}
+\input{parts/title.tex}
+
+% Certificate and Acknow.
+\newpage
+\thispagestyle{empty}
+\begin{center}
+\textsc{{\textbf{DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}}}\\
+\vspace{1mm}
+\textsc{\textbf{COLLEGE OF ENGINEERING}}\\
+\vspace{1mm}
+\textsc{\textbf{THIRUVANANTHAPURAM 16}}\\
+\vspace{6mm}
+\includegraphics[width=0.3\textwidth]{images/cet_logo.jpg}\\
+\vspace{10mm}
+
+\textbf{CERTIFICATE}
+\vspace{4mm}
+\end{center}
+\begin{spacing}{1.5}
+This is to certify that the project report entitled {\bf "Adding Semantics to RESTful Web Services"} is a bonafide record of the project work done by {\it Dhananjay Balan,Abil N George, Akhil PM, Deepak Krishnan}  under my supervision and guidance, in partial fulfillment for the award of the degree of {\bf Bachelor of Technology in Computer Science and Engineering} of the {\bf University of Kerala} during the year {\bf 2013}.\\
+\end{spacing}
+\vspace{5mm}
+\noindent{Guide\hfill Head of the Department}\\
+\vspace{8mm} \\
+\noindent{\bf Dr. Abdul Nizar M, \hfill \bf Prof. Ajeena Beegom  A.S} \\
+\noindent{Professor(Guide) \hfill Head of Department} \\
+\noindent{Department Of Computer Science \hfill Department Of Computer Science} \\
+\noindent{and Engineering \hfill and Engineering} \\
+\noindent{College Of Engineering \hfill College Of Engineering} \\
+\noindent{Trivandrum-16 \hfill Trivandrum-16} \\
+
+% Ack
+\newpage
+\thispagestyle{empty}
+\begin{center}
+\textsc{\bf ACKNOWLEDGMENT}
+\end{center}
+\vspace{20mm}
+\begin{spacing}{1.5}
+First and foremost, we wish to place on records our ardent and earnest gratitude to our project guide {\bf Dr. Abdul Nizar, Professor, Department of Computer Science and Engineering}. His tutelage and guidance was the leading factor in translating our efforts to fruition. His prudent and perspective vision has shown light on our trail to triumph.
+
+We are extremely happy to mention great word of gratitude to {\bf Prof. Ajeena Beegom A.S, Head of the Department of Computer Science and Engineering} for providing us with all facilities of this work.
+
+Finally yet importantly,we would like to express our gratitude to our project coordinator {\bf Mrs. Deepa S.S}, for her valuable assistance provided during the course of the project.
+
+We would also extend our gratefulness to all the staff members in the Department. We also thank all our friends and well-wishers who greatly helped us in our endeavour.
+.\\
+\end{spacing}
+\vspace{15mm}
+{\raggedleft {\bf Abil N George \\ Akhil P M \\ Deepak Krishnan N \\ Dhananjay Balan\\}}
+\include{parts/abstract}
+\newpage
+{
+\pagestyle{empty}
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\cleardoublepage
+}
+
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\include{parts/introduction}
+\include{parts/scope}
+\include{parts/relatedwork}
+\include{parts/illustrating}
+\include{parts/design}
+\include{parts/implementation}
+\include{parts/output}
+\include{parts/conclusion}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{1}
+	1. Christian Bizer, Tom Heath, Tim Berners-Lee,
+	\emph{1. Linked Data - The Story So Far}.
+	in International Journal on Semantic Web and Information Systems IJSWIS, 2009..
+\bibitem{2}
+	Frank Manola, Eric Miller, Brian McBride,
+	\emph{“RDF Primer”},
+	W3C Recommendation, 10 February 2004.
+
+\bibitem{3}
+	Dborah L. McGuinness, Frank van Harmelen,
+	\emph{“OWL Web Ontology Language: 	Overview”},
+	W3C Recommendation, 10 February 2004.
+\bibitem{4}
+	W3C OWL Working Group,
+	\emph{“OWL 2 Web Ontology Language: Document Overview”},
+	W3C Recommendation, 27 October 2009.
+\bibitem{5}
+	Dan Brickley, R.V. Guha, Brian McBride,
+	\emph{“RDF Vocabulary Description Language 1.0: 	RDF Schema”},
+	W3C Recommendation, 10 February 2004.
+\bibitem{6}
+	Microformats -
+	\emph{http://www.microformats.org/.}
+\bibitem{7}
+	Ben Adida, Mark Birbeck, Shane McCarron, Steven Pemberton,
+	\emph{“RDFa in XHTML: 	Syntax and Processing: A collection of attributes and processing rules for extending 	XHTML to support RDF”},
+	W3C Recommendation, 14 October 2008.
+\bibitem{8}
+	Ben Adida, Mark Birbeck,
+	\emph{“RDFa Primer - Bridging the Human and Data Webs”},
+	W3C 	Recommendation, 14 October 2008.
+\bibitem{9}
+	R.T. Fielding,
+	\emph{“Architectural styles and the design of network-based software       	architectures”},
+	PhD dissertation, Department of Information and Computer Science, 	University of California, Irvine, 2000.
+\bibitem{10}
+	Roberto Chinnici,Jean-Jacques Moreau, Arthur Ryman, Sanjiva Weerawarana,
+	\emph{“Web 	Services Description Language (WSDL) Version 2.0 Part 1: Core Language”},
+	W3C 	Recommendation, 26 June 2007.
+\bibitem{11}
+	Marc Hadley,
+	\emph{“Web Application Description Language”},
+	W3C Member Submission, 31 	August 2009.
+\bibitem{12}
+	Jacek Kopecky, Karthik Gomadam, Tomas Vitvar,
+	\emph{“hRESTS: an HTML Microformat for 	Describing RESTful Web Services,”} IEEE/WIC/ACM International Conference on Web 	Intelligence and Intelligent Agent Technology, 2008.
+\bibitem{13}
+	Karthik Gomadam, Ajith Ranabahu, Amit Sheth,
+	\emph{“SA-REST: Semantic Annotation of 	Web Resources”},
+	W3C Member Submission, 05 April 2010.
+\bibitem{14}
+	Markus Lanthaler, Christian Gütl,
+	\emph{“A Semantic Description Language for RESTful Data 	Services to Combat Semaphobia”},
+	5th IEEE International Conference on Digital 	Ecosystems and Technologies (IEEE DEST 2011), 31 May -3 June 2011, Daejeon, Korea.
+\bibitem{15}
+	Douglas Crockford,
+	\emph{“RFC 4627: The application/json Media Type for JavaScript Object 	Notation (JSON)”},
+	Network Working Group, July 2006.
+\bibitem{jsplumb}
+	jsPlumb documentation -
+	\emph{http://jsplumbtoolkit.com/doc/home.html}
+\bibitem{api}
+	API Documentation -
+	\emph{http://jsplumbtoolkit.com/apidocs/files/jsPlumb-1.4.1-apidoc.html}
+\bibitem{rdf}
+	W3C's List of Documents about RDF
+	\emph{http://www.w3.org/standards/techs/rdf}
+	http://www.rdfabout.com/
+\bibitem{bootstrap}
+	Bootstrap -
+	\emph{http://twitter.github.io/bootstrap/index.html}
+\bibitem{ift}
+	IFTTT Service
+	\emph{ifttt.com}
+\bibitem{pip}
+	Yahoo! Pipes
+	\emph{http://pipes.yahoo.com}
+\bibitem{nodejs}
+	Node.js API Documentation -
+	\emph{http://nodejs.org/api/}
+
+
+
+\end{thebibliography}
+%\bibliographystyle{ieeetr}
+%\bibliography{booklist}
+%\printglossary[type=main]
+%\addcontentsline{toc}{chapter}{Glossary}
+%\printglossary[type=\acronymtype]
+%\addcontentsline{toc}{chapter}{Acronyms}
+
+\end{document}

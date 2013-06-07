@@ -1,1 +1,7 @@
 *~
+*.glo
+*.aux
+*.toc
+*.acn
+*.ist
+*.out
