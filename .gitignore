@@ -5,3 +5,5 @@
 *.acn
 *.ist
 *.out
+*.log
+*.aux

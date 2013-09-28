@@ -1,0 +1,56 @@
+<div class="hresource">
+ <h1 class="name">User</h1>
+ URL:<span class="url">http://example.com/api/user</span>
+ <p class="comment">
+  It is a <a rel="hresource-is-a" href="http://dublincore.org/user/">user</a>
+ </p>
+ <div class="method">
+  It use HTTP <span class="type">GET</span> request with:<br>
+  Inputs:
+  <ul>
+   <li class="input">username</li>
+   <li class="input">password</li>
+   <li class="input">country</li>
+  </ul>
+  Produces:
+  <ul>
+   <li class="output">token</li>
+  </ul>
+ </div>
+ <h6>Attribute Descriptions</h6>
+ <ol>
+  <li>
+   <code class="attribute required write-once queryable">username</code>:
+   <span class="comment">required, must be unique.</span>
+  </li>
+  <li>
+   <code class="attribute required">password</code>:
+   <span class="comment">required.</span>
+  </li>
+  <li>
+   <code class="attribute queryable">country</code>:
+   <span class="comment">country code</span>(<span class="hresource-datatype">string</span>)
+   <div>Producers:
+	<ul>
+	 <li><a rel="hresource-produced-by" href="http://xyz.com/cn#country">cn</a></li>
+	 <li><a rel="hresource-produced-by" href="http://abc.com/getcountry#country">getcountry</a></li>
+	</ul>
+   </div>
+  </li>
+  
+  <li>
+   <code class="attribute read-only">token</code>:
+   <span class="comment">userID returned as result</span>
+  </li>
+ </ol>
+  
+ <h6>Error Number and Description</h6>
+ <ol>
+  <li class="hresource-error">
+   <code class="error-code">550</code> :- <span class="comment">no such user</span>
+  </li>
+  <li class="hresource-error">
+   <code class="error-code">504</code> :- <span class="comment">Authorization failed</span>
+  </li>
+ </ol>
+</div>

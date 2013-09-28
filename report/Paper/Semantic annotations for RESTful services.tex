@@ -1,0 +1,472 @@
+
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+\documentclass[journal]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[12pt,journal,compsoc]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+
+%\ifCLASSOPTIONcompsoc
+%\usepackage[tight,normalsize,sf,SF]{subfigure}
+%\else
+%\usepackage[tight,footnotesize]{subfigure}
+%\fi
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". 
+
+
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false]{caption}
+%  \usepackage[font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false]{caption}
+%  \usepackage[font=footnotesize]{subfig}
+%\fi
+
+
+% *** FLOAT PACKAGES ***
+%
+\usepackage{fixltx2e}
+%\usepackage{stfloats}
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% Basically,
+% \url{my_url_here}.
+
+
+% correct bad hyphenation here
+%\hyphenation{op-tical net-works semi-conduc-tor}
+
+% ***OTHER PACKAGES***
+\usepackage{listings}
+
+%JSON
+\lstdefinelanguage{JSON}{
+    basicstyle=\normalfont\ttfamily,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    morestring=[b]",
+    morestring=[d]'
+}
+
+\lstdefinelanguage{hresource}{
+    %language=html,
+    basicstyle=\ttfamily,
+    breaklines=true,
+    moredelim=[s][\textbf]{rel="hresource}{"},
+    moredelim=[s][\textbf]{class="}{"}
+}
+
+
+\usepackage{graphicx}
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{MACHINE READABLE WEB SERVICE DESCRIPTIONS FOR AUTOMATED DISCOVERY AND COMPOSITION OF RESTFUL WEB SERVICES}
+
+\author{\IEEEauthorblockN{
+Dr. Abdul Nizar M \IEEEauthorrefmark{1},
+Akhil P M\IEEEauthorrefmark{2},
+Deepak Krishanan\IEEEauthorrefmark{2},
+Dhananjay Balan\IEEEauthorrefmark{2},and 
+Abil N George\IEEEauthorrefmark{2} 
+}\\
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Professor, Department of Computer Science and Engineering, College of Engineering, Trivandrum}\\
+\IEEEauthorblockA{\IEEEauthorrefmark{2} Department of Computer Science and Engineering, College of Engineering, Trivandrum}
+}
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+`
+
+\begin{abstract}
+%\boldmath
+Restful web services are getting popular today. Most of the service providers are moving to REST based services due to its simplicity and popularity. Even with this much adoption rate, creation of mashups is a himalayan task for an average web developer. Many solutions had been proposed for adding semantics to RESTful web services to automate discovery and composition of services. However they suffer from many problems like, biased towards SOAP based web services,need a separate file for machine parsable descriptions and more. The existing automated mahsup creation service faces scalability issues. The need of the hour is an highly scalable system to reduce as much human intervention as possible for the discovery and composition of the RESTful web services. In this paper, we proposed a microformat like grammar added to the existing service documentation to double them as machine readable. It also uses RDF descriptions at the backend in order to provide strong interlinking among resources, which the end users are not aware of.
+\end{abstract}
+
+
+\begin{IEEEkeywords}
+Semantic Web, intelligent agents, web service, semantic web service, REST, RESTful architecture, service discovery, service composition, Microformats, Poshformats, RDF
+\end{IEEEkeywords}
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+
+REST defines a set of architectural principles for designing web services that uses a Resource Oriented approach compared to SOAP based services, which uses RPC semantics. REST is light-weight compared to SOAP which packs a lot of complexity with the implementation of SOAP envelopes and Header. SOAP messages are formatted in XML while we can use XML or JSON with RESTful services for sending and receiving data. 
+
+REST provides a set of architectural constraints that, when applied as a whole, emphasizes scalability of component interactions, generality of interfaces, independent deployment of components, and intermediary components to reduce interaction latency, enforce security, and encapsulate legacy systems. REST uses Uniform Resource Indicators(URIs) to locate resources.Web developers are shifting to REST based services due to its simplicity and wide adoption rate as a standard for creating web services. Most of the companies now provides RESTful services like google,yahoo,amazon,facebook etc.
+
+Mashups are formed by integrating  different services. They can combine data or functionality from two or more sources to create  new services. Early mashups were developed manually by enthusiastic programmers. More sophisticated approaches are in need as the use of mashuped services are increased in day to day life. This led to the thought of automating mashup creation so that machines can intelligently create mashups with minimal human intervention.
+
+Earlier approaches of automated mashup creation sticks to the use of an external file for service description which only machine can understand. This gives additional overhead to developers for maintaining machine readable descriptions parallel to human readable documentations. The microformat \cite{microformat} like approach is simple and easy to use,hence provides low entry barriers for web developers. It uses existing service descriptions in HTML to double them as machine readable descriptions by adding annotations to it such that it is not visible in markups.
+
+There exists so many mashup editors which can automate mashup creation like Yahoo pipes\cite{pip}, Google Mashup Editors(GME), Microsoft Popfly etc.Yahoo pipes is a free online service with a drag and drop interface to aggregate,manipulate and mashup content from around the web.You can create your own custom RSS feeds with Yahoo Pipe that pull in content from a variety of sources and filter it so that you only see the most relevant news stories.However Yahoo Pipes faces many drawbacks. It cannot create a mashup between any pair of services.Also Yahoo Pipes is not scalable since lack processing power. It fails to generate results while processing complex regex from far multiple locations, with hundreds of posts every minutes.
+
+GME is the  mashup editor service from Google.Compared to Yahoo Pipes Google Mashup Editor wins in terms of power and flexibility. It allows to use coding in javascript,HTML,CSS etc along with the interactive interface. Microsoft Popfly is the simplest mashup editor which can be used as entry point for web developers. However both of these services were discontinued. 
+
+\section{Related Works}
+%TODO
+\vspace{150pt}
+\textit{\textbf{TODO}}\\
+about hREST,SA-REST,SERIDASj.How our methord combine benfits of above.
+\vspace{150pt}
+
+\section{Service Description}
+\label{sec:ServiceDescription}
+Services are described using special purpose annotations in the HTML code. These annotations are specified in the class attribute of the associated tags. This attribute is usually used for classification of HTML elements and also as selectors for JavaScript access and to style elements via CSS. Using special purpose annotations as class names help us to reuse whatever is already provided by HTML and JavaScript. Following annotations are proposed for describing resources in a RESTful API.
+
+\subsection{General Annotations}
+\begin{enumerate}
+
+\item {\bf hresource}: This is the root annotation that marks the resource description. All other annotations are contained within an element marked with {\it class="hresource"}. A client parsing a page could treat the presence of this annotation as an indication of the existence of a resource description on the page. Unless all other annotations are encapsulated in an hresource, they will not be parsed.
+
+\item {\bf name} :Annotates the name of the resource. This can be any human readable name and need not have any programming significance.
+
+\item {\bf url/uri}: Annotates the URL at which the resource is accessible.
+\end{enumerate}
+
+\subsection{Annotation Of Attributes}
+
+\begin{enumerate}
+\item {\bf attribute}: Annotates an attribute/property of the resource. All attributes of a resource should be annotated with this annotation. Specific characteristics of the attribute could be further specified by more annotations that are used together with the attribute annotation.
+
+\item {\bf required}: Indicates a required attribute. This annotation is always used along with the attribute annotation.
+
+\item {\bf queryable}:  Indicates an attribute that may be provided in the HTTP querystring during a GET operation to filter the results. This annotation is always used along with the attribute annotation.
+
+\item {\bf read-only}:  Indicates a read-only attribute. A read-only attribute may be retrieved during a GET operation but may not be included in a POST or a PUT. This annotation is always used along with the attribute annotation.write-once: Indicates a write-once attribute that can be specified only during the create operation (POST) but not during update (PUT). This annotation is always used along with the attribute annotation.
+
+\item {\bf guid}: Indicates if an attribute is a globally unique identifier for the resource that could be used across multiple services.
+\item {\bf Comment}: Provides a human-readable description of the attribute. This should be descendant of parent of attribute node
+
+\item {\bf hresource-datatype}: Annotates the datatype of the attribute.This should be descendant of parent of attribute node.For permissible types see table: \ref{tab:data_types}
+
+\begin{table}
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Data Type      & Description                    \\ \hline
+    Integer or Int &  32 bit integer                \\ \hline
+    float          & floating point number          \\ \hline
+    Int64          &  64 bit integer.               \\ \hline
+     Range         &  Boolean or Bool               \\ \hline
+    Date or Time   & should specify date formatting \\ \hline
+    Timestamp      & Timestamp of entity            \\ \hline
+    \end{tabular}
+    \caption{Data types}
+    \label{tab:data_types}
+\end{table}
+
+{\bf eg}: Range(0.0,1.0) specifies floating point number between 0 and 1 and Range(0,1) specifies integer between 0 and 1.
+\end{enumerate}
+
+
+
+\subsection{Annotation of Methods}
+Attribute can be input or output or both. Originally REST resource can be considers as bundle of attributes, each of which may have restriction on their access. But most of existing REST resources is specified as input/output of HTTP Methods ( GET,POST,PUT,DELETE).   
+
+\begin{enumerate}
+\item {\bf method}: This is the root annotation that marks the permissible method. It contains following sub-annotations
+\begin{itemize}
+\item {\it type}: HTTP request type. GET,POST,PUT,DELETE
+\item {\it input}:  (optional) input attribute name
+\item {\it output}: (optional) output attribute name
+\item {\it header}: (optional) attributes that should be passed as header to HTTP request
+\end{itemize}
+\end{enumerate}
+
+\subsection{Annotation of Errors}
+
+\begin{enumerate}
+\item {\bf hresource-error}: This is the root annotation that marks the errors.It should contain two sub-annotation for each error:
+\begin{itemize}
+\item {\it error-code}:Specify the error code.
+\item {\it comment}: Description of error.
+\end{itemize}
+eg:
+\begin{lstlisting}[language=html,breaklines=true]
+<li class="hresource-error">
+    <code class="error-code">201</code>:
+    <span class="comment">test failed</span>
+</li>
+\end{lstlisting}
+\end{enumerate}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=3.5in]{images/rel_semantic.png}
+    \caption{Relationship between the semantic annotations}
+    \label{fig:rel_semantic}
+\end{figure}
+
+\subsection{Annotations For Linking Resources}
+\begin{enumerate}
+\item {\it Link to Super class}: When a resource is a subclass of another resource, this link is indicated by the rel attribute hresource-is-a. This implies that wherever the super class is accepted, the subclass is also accepted. For e.g., if a publisher defines a Book resource to provide a search of their catalog, they could annotate the resource to be a subclass of a more generic Book resource.
+
+\begin{lstlisting}[language=html,breaklines=true]
+<a rel="-is-a" href="http://dublincore.org/book/"> Book </a>
+\end{lstlisting}
+
+If there is another service from a bookshop that is known to accept a generic book resource for a purchase process, the client could infer that the specific book resource from the catalog would also be accepted there and use it.
+
+For this linking to work properly, we need a core set of resources that can be extended by others. Fortunately, there is already a project named Dublin Core running that has defined many commonly used resources. We could reuse these resources for our purpose and use them as the root resources.
+
+\item {\it Link to Consumers}: When an attribute of a service is consumed by another known service, this is annotated using \texttt{a rel attribute hresource-consumed-by}. This enables a software agent to find out what all can be done with the resource that it has already retrieved.
+
+\begin{lstlisting}[language=html,breaklines=true]
+<code class="attribute">ISBN</code>
+Consumers:
+<ul>
+    <li rel="hresource-consumed-by">
+    http://abc.com/buybook\#isbn
+    </li>
+    <li rel="hresource-consumed-by">
+    http://xyz.com/rentbook\#isbn
+    </li>
+</ul>
+\end{lstlisting}
+
+\item {\it Link to Producers}: Similar to the link to consumers, services can annotate a link to a producer of one of its attributes. This helps reverse traversal of resources and also makes the system more peer-to-peer. This way, a link needs to be provided in either at one of the consumers or at the provider and an agent can identify this with link traversal. The annotation is made with the rel attribute \texttt{hresource-produced-by}.
+
+The relationship between these semantic annotation is shown in figure \ref{fig:rel_semantic}.
+
+\end{enumerate}
+
+
+\section{Example REST{\it ful} web service}
+
+%TODO
+\vspace{50pt}
+Consider a RESTful API with a ...
+
+\textbf{\textit{TODO}}\\
+\vspace{50pt}
+
+The Listing.\ref{lst:Sample_HTML} depicts an annotation(according to Section.\ref{sec:ServiceDescription}[Service Description]) across an HTML description of above API. 
+
+When above HTML page (Listing.\ref{lst:Sample_HTML}) is parsed,required information of API is generated as JSON,which is shown in  Listing.\ref{lst:Sample_JSON}.
+
+Moreover we can also generate HTML documentary page from a JSON in specified format.
+
+\lstinputlisting[language=hresource, frame=lines,
+captionpos=b,caption=annotated HTML page, belowcaptionskip=4pt,
+label=lst:Sample_HTML]{images/HTML.html}
+
+
+\lstinputlisting[language=JSON,frame=lines
+,captionpos=b,caption=JSON description generated from above HTML page, belowcaptionskip=4pt,
+label=lst:Sample_JSON]{images/JSON.json}
+
+\section{System implementation}
+
+The proposed system currently addresses the composition of RESTful web services that represent resources using the JavaScript Object Notation (JSON). The system expects the services to return results to API queries as JSON objects and composes them as per the user specification. Extension of the same idea can enable the composition of XML based RESTful services. The system also includes an RDF conversion module that performs the automatic conversion process from Micro-format annotations to RDF\cite{rdf}.
+
+The system uses a web UI at the client side for reading user input. The requests are handled by a server program developed in node.js that accepts requests from multiple client machines and handles them asynchronously. The server program acts as a proxy and is developed to enable the system to handle high volumes of client traffic. The server does the bulk of processing and also allows multiple cross domain HTTP calls with ease, which would otherwise be not possible with a client side implementation because of the same origin policy enforced by the modern web browsers.
+The basic architecture of the system is as illustrated in \ref{fig:sys_arch}.
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=3.5in]{images/sys_arch.png}
+    \caption{System architecture}
+    \label{fig:sys_arch}
+\end{figure}
+
+The system uses a parser module to parse the DOM tree of the annotated API Documentation page and extract the information embedded in it. Based on the information extracted from DOM tree, the web UI presented to the user is populated with a set of API operations that the system identifies and that can be composed. A workbench is presented to the user and a drag-drop based user interface enables the him/her to graphically describe the required composition of web services. Once the graphical design of the mash-up is complete and user submits it, information from the design is converted into an abstract internal representation that is passed to the server. The server now invokes the required API calls asynchronously and composes them as required and produces an HTML formatted output which is the required mash-up. The HTML output is then served back to the client system for the user.
+
+The interaction flow in the system is illustrated in \ref{fig:interaction_flow}.
+\begin{figure*}[!t]
+   \centering
+    \includegraphics[width=6in] {images/seq.png}
+    \caption{Interaction flow sequence}
+    \label{fig:interaction_flow}
+\end{figure*}
+
+
+\subsection{Server Side Implementation}
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=3.5in]{images/server_arch.png}
+    \caption{Server Architecture}
+   \label{fig:server_arch}
+\end{figure}
+The architecture of the server is as illustrated in \ref{fig:server_arch}.Server primarily deals with providing three services:
+\begin{enumerate}
+    \item {\it Parsing API Documentation HTML}: Client side provides the URL of an annotated API     Documentation HTML page. The server fetches the required documentation page and passes 	the HTML DOM to the parser module (hrestsparser). The parser generates a JSON 	description of the annotated resources which is then passed to the client to populate the 	client UI. The parser uses XPath for the traversal of the DOM tree and hence platform 	neutral.
+	\item {\it RDF Generation}: Client passes a URL to the server. The page is fetched by the RDF 	generator module. The page is parsed by the hRESTS parser module  to produce the output 	JSON. The produced-by,consumed-by,is-a relations in the annotated page forms a graph of 	resources each of which is required for the generation of the RDF description. The RDF 	generator module recursively traverses the graph and fetches each of the 	required resources 	up to some arbitrary level of nesting.
+	\item {\it Request handling and mash-up generation}: The user specifies the required composition of 	services graphically in the client workbench. An abstract description of the required mash-up 	is generated at the client and is passed to the server as a JSON object. The server makes the 	required API invocations to fetch each of the resources to be composed into the final 	mash-up. The description JSON is parsed and the result resources are composed as specified 	producing an HTML output which is then served to the client system.
+\end{enumerate}
+
+\subsection{Client Side Implementation}
+Client provides a simple drag and drop based user interface for mash-up design which can be implemented using jsPlumb\cite{jsplumb}. The elements in the UI are populated from the contents of the API documentations passed to the server. The different API calls can be simply dragged and dropped to the workbench and the inputs and outputs can be piped to one another by graphical connectors.
+
+Client uses basic data structures which are simple JSON objects to keep track of attribute value or mapping .This forms a logical graph of the way in which the different service calls are composed. An abstract representation of the mash-up is created by traversing the graph. The traversal can be done by using a modified Depth First Search technique. The abstract representation is a JSON object which represents the initiation sequence for the API calls. This is then passed to the server.
+
+
+\section{Conclusion and Future work}
+
+
+Web is increasingly getting complex these days. Thousands of services spawn millions of requests each day. This work envisioned a intelligent web framework in which a service can create interconnections between different services compatible. It opens up a multitude of possibilities, including a higher layer manipulation of information for what it represents than how it is represented.
+
+Popularization of services like ifttt\cite{ift} have given us the proof that this service is inevitable in the future of web, and if machines were able to parse the information constituted by entire internet it can do wonders that no one envisioned, so it can only be compared with magic.
+
+The prototype mash-up editor created can intelligently mash the services based on annotations But it is also limited in some aspects. But we hope this direction deserves more exploration since it is relatively easy for the developer and the machine to follow. The prototype was implemented in different paradigms to verify the computational comparability.
+The immediate future directions we would like to purse this works are
+\begin{itemize}
+\item Change to accommodate today's REST APIs. Most of the rest apis in use today does to conform to the RESTful paradigm. They use GET heavily to get most of the things done for performance purposes.
+\item A tool to convert existing REST APIs. But this comes with lot of challenge. The above one for a start, adoption is another problem.
+\end{itemize}
+
+% use section* for acknowledgement
+%\section*{Acknowledgment}
+%The authors would like to thank...
+
+
+% references section
+
+\begin{thebibliography}{10}
+\bibitem{bib:davis}
+    Davis John, Rajasree M. S,
+    \emph{A Framework for the Description, Discovery and Composition of RESTful Semantic Web Services}
+\bibitem{rdfschema}
+	Dan Brickley, R.V. Guha, Brian McBride,
+	\emph{“RDF Vocabulary Description Language 1.0: 	RDF Schema”},
+	W3C Recommendation, 10 February 2004.
+\bibitem{microformat}
+	Microformats -
+	\emph{http://www.microformats.org/.}
+\bibitem{rdfa}
+	Ben Adida, Mark Birbeck,
+	\emph{“RDFa Primer - Bridging the Human and Data Webs”},
+	W3C 	Recommendation, 14 October 2008.
+\bibitem{hrest}
+	Jacek Kopecky, Karthik Gomadam, Tomas Vitvar,
+	\emph{“hRESTS: an HTML Microformat for 	Describing RESTful Web Services,”} IEEE/WIC/ACM International Conference on Web 	Intelligence and Intelligent Agent Technology, 2008.
+\bibitem{sarest}
+	Karthik Gomadam, Ajith Ranabahu, Amit Sheth,
+	\emph{“SA-REST: Semantic Annotation of 	Web Resources”},
+	W3C Member Submission, 05 April 2010.
+\bibitem{semaphobia}
+	Markus Lanthaler, Christian Gütl,
+	\emph{“A Semantic Description Language for RESTful Data 	Services to Combat Semaphobia”},
+	5th IEEE International Conference on Digital 	Ecosystems and Technologies (IEEE DEST 2011), 31 May -3 June 2011, Daejeon, Korea.
+\bibitem{jsplumb}
+	jsPlumb documentation -
+	\emph{http://jsplumbtoolkit.com/doc/home.html}
+\bibitem{api}
+	API Documentation -
+	\emph{http://jsplumbtoolkit.com/apidocs/files/jsPlumb-1.4.1-apidoc.html}
+\bibitem{rdf}
+	W3C's List of Documents about RDF
+	\emph{http://www.w3.org/standards/techs/rdf}
+	http://www.rdfabout.com/
+\bibitem{ift}
+	IFTTT Service
+	\emph{ifttt.com}
+\bibitem{pip}
+	Yahoo! Pipes
+	\emph{http://pipes.yahoo.com}
+
+\end{thebibliography}
+
+
+% that's all folks
+\end{document}
+
+

@@ -1,0 +1,95 @@
+{
+  "hresource":"1.0",
+  "baseurl":"",
+  "doc-url":"http://localhost/api_desc/user.html",
+  "apis":[
+  {
+    "name":"User",
+    "uri":"http://example.com/api/user",
+    "is-a":{
+    "name":"user",
+    "doc-url":"http://dublincore.org/user/"
+    },
+    "description":"It is a user",
+    "output-format":"json",
+    "methods":[
+    {
+      "type":"GET",
+      "inputs":["username","password","country"],
+      "outputs":["token"]
+    }
+    ],
+    "attributes":[
+    {
+      "name":"username",
+      "read-only":false,
+      "write-once":true,
+      "required":true,
+      "queryable":true,
+      "guid":false,
+      "type":null,
+      "description":"required,must be unique.",
+      "consumed-by":[],
+      "produced-by":[]
+    },
+    {
+      "name":"password",
+      "read-only":false,
+      "write-once":false,
+      "required":true,
+      "queryable":false,
+      "guid":false,
+      "type":null,
+      "description":"required.",
+      "consumed-by":[],
+      "produced-by":[]
+    },
+    {
+      "name":"country",
+      "read-only":false,
+      "write-once":false,
+      "required":false,
+      "queryable":true,
+      "guid":false,
+      "type":"string",
+      "description":"country code",
+      "consumed-by":[],
+      "produced-by":[
+      {
+        "attribute":"country",
+        "doc-url":"http://xyz.com/cn",
+        "api":"cn"
+      },
+      {
+        "attribute":"country",
+        "doc-url":"http://abc.com/getcountry",
+        "api":"getcountry"
+      }
+      ]
+    },
+    {
+      "name":"token",
+      "read-only":true,
+      "write-once":false,
+      "required":false,
+      "queryable":false,
+      "guid":false,
+      "type":null,
+      "description":"userID returned as result",
+      "consumed-by":[],
+      "produced-by":[]
+    }
+    ],
+    "errors":[
+    {
+      "code":"550",
+      "comment":"no such user"
+    },
+    {
+      "code":"504",
+      "comment":"Authorization failed"
+    }
+    ]
+  }
+  ]
+}
