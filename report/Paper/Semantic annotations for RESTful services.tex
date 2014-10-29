@@ -1,35 +1,4 @@
-
-%% bare_conf.tex
-%% V1.3
-%% 2007/01/11
-%% by Michael Shell
-%% See:
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
-%% and
-%% http://www.ieee.org/
-
 \documentclass[journal]{IEEEtran}
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[12pt,journal,compsoc]{../sty/IEEEtran}
-
-
-
-
-
-% Some very useful LaTeX packages include:
-% (uncomment the ones you want to load)
-% *** CITATION PACKAGES ***
-%
 \ifCLASSOPTIONcompsoc
   % IEEE Computer Society needs nocompress option
   % requires cite.sty v4.0 or later (November 2003)
@@ -40,82 +9,7 @@
 \fi
 
 
-
-
-
-% *** SPECIALIZED LIST PACKAGES ***
-%
-%\usepackage{algorithmic}
-
-
-
-% *** ALIGNMENT PACKAGES ***
-%
-%\usepackage{array}
-% Frank Mittelbach's and David Carlisle's array.sty patches and improves
-% the standard LaTeX2e array and tabular environments to provide better
-% appearance and additional user controls. As the default LaTeX2e table
-% generation code is lacking to the point of almost being broken with
-% respect to the quality of the end results, all users are strongly
-% advised to use an enhanced (at the very least that provided by array.sty)
-
-%\usepackage{mdwmath}
-%\usepackage{mdwtab}
-% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
-% especially mdwmath.sty and mdwtab.sty which are used to format equations
-% and tables, respectively. The MDWtools set is already installed on most
-
-%\usepackage{eqparbox}
-% Also of notable interest is Scott Pakin's eqparbox package for creating
-% (automatically sized) equal width boxes - aka "natural width parboxes".
-% Available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
-
-
-
-
-
-% *** SUBFIGURE PACKAGES ***
-
-%\ifCLASSOPTIONcompsoc
-%\usepackage[tight,normalsize,sf,SF]{subfigure}
-%\else
-%\usepackage[tight,footnotesize]{subfigure}
-%\fi
-% subfigure.sty was written by Steven Douglas Cochran. This package makes it
-% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". 
-
-
-%\ifCLASSOPTIONcompsoc
-%  \usepackage[caption=false]{caption}
-%  \usepackage[font=normalsize,labelfont=sf,textfont=sf]{subfig}
-%\else
-%  \usepackage[caption=false]{caption}
-%  \usepackage[font=footnotesize]{subfig}
-%\fi
-
-
-% *** FLOAT PACKAGES ***
-%
 \usepackage{fixltx2e}
-%\usepackage{stfloats}
-%\ifCLASSOPTIONcaptionsoff
-%  \usepackage[nomarkers]{endfloat}
-% \let\MYoriglatexcaption\caption
-% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
-%\fi
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
-%\usepackage{url}
-% Basically,
-% \url{my_url_here}.
-
-
-% correct bad hyphenation here
-%\hyphenation{op-tical net-works semi-conduc-tor}
-
-% ***OTHER PACKAGES***
 \usepackage{listings}
 
 %JSON
@@ -146,14 +40,15 @@
 \title{MACHINE READABLE WEB SERVICE DESCRIPTIONS FOR AUTOMATED DISCOVERY AND COMPOSITION OF RESTFUL WEB SERVICES}
 
 \author{\IEEEauthorblockN{
-Dr. Abdul Nizar M \IEEEauthorrefmark{1},
-Akhil P M\IEEEauthorrefmark{2},
-Deepak Krishanan\IEEEauthorrefmark{2},
-Dhananjay Balan\IEEEauthorrefmark{2},and 
-Abil N George\IEEEauthorrefmark{2} 
+Dhananjay Balan\IEEEauthorrefmark{1},
+Abil N George\IEEEauthorrefmark{1},
+Akhil P M\IEEEauthorrefmark{1},
+Deepak Krishanan\IEEEauthorrefmark{1},
+and 
+Dr. Abdul Nizar M \IEEEauthorrefmark{2}
 }\\
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Professor, Department of Computer Science and Engineering, College of Engineering, Trivandrum}\\
-\IEEEauthorblockA{\IEEEauthorrefmark{2} Department of Computer Science and Engineering, College of Engineering, Trivandrum}
+\IEEEauthorblockA{\IEEEauthorrefmark{1} Department of Computer Science and Engineering, College of Engineering, Trivandrum}\\
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Professor, Department of Computer Science and Engineering, College of Engineering, Trivandrum}
 }
 
 % use for special paper notices
@@ -196,18 +91,43 @@ REST provides a set of architectural constraints that, when applied as a whole, 
 
 Mashups are formed by integrating  different services. They can combine data or functionality from two or more sources to create  new services. Early mashups were developed manually by enthusiastic programmers. More sophisticated approaches are in need as the use of mashuped services are increased in day to day life. This led to the thought of automating mashup creation so that machines can intelligently create mashups with minimal human intervention.
 
-Earlier approaches of automated mashup creation sticks to the use of an external file for service description which only machine can understand. This gives additional overhead to developers for maintaining machine readable descriptions parallel to human readable documentations. The microformat \cite{microformat} like approach is simple and easy to use,hence provides low entry barriers for web developers. It uses existing service descriptions in HTML to double them as machine readable descriptions by adding annotations to it such that it is not visible in markups.
+Earlier approaches of automated mashup creation sticks to the use of an external file for service description which only machine can understand. This gives additional overhead to developers for maintaining machine readable descriptions parallel to human readable documentations. The microformat \cite{kopecky2008hrests} like approach is simple and easy to use,hence provides low entry barriers for web developers. It uses existing service descriptions in HTML to double them as machine readable descriptions by adding annotations to it such that it is not visible in markups.
 
 There exists so many mashup editors which can automate mashup creation like Yahoo pipes\cite{pip}, Google Mashup Editors(GME), Microsoft Popfly etc.Yahoo pipes is a free online service with a drag and drop interface to aggregate,manipulate and mashup content from around the web.You can create your own custom RSS feeds with Yahoo Pipe that pull in content from a variety of sources and filter it so that you only see the most relevant news stories.However Yahoo Pipes faces many drawbacks. It cannot create a mashup between any pair of services.Also Yahoo Pipes is not scalable since lack processing power. It fails to generate results while processing complex regex from far multiple locations, with hundreds of posts every minutes.
 
 GME is the  mashup editor service from Google.Compared to Yahoo Pipes Google Mashup Editor wins in terms of power and flexibility. It allows to use coding in javascript,HTML,CSS etc along with the interactive interface. Microsoft Popfly is the simplest mashup editor which can be used as entry point for web developers. However both of these services were discontinued. 
 
 \section{Related Works}
-%TODO
-\vspace{150pt}
-\textit{\textbf{TODO}}\\
-about hREST,SA-REST,SERIDASj.How our methord combine benfits of above.
-\vspace{150pt}
+Many solutions had been proposed for formally describing RESTful web services. These proposals approach the problem  from different directions each providing a novel way of addressing the issue at hand. Most of these solutions were member submissions to the W3C but there is hardly any consensus on one global standard.
+
+\subsection{Web Service Description Language (WSDL) 2.0}
+WSDL 2.0\cite{chinnici2007web} is an extension of the Web Service Description Language (WSDL)that was used to describe traditional SOAP based services. WSDL 2.0 supports describing RESTful services by mapping the HTTP methods into explicit services available at the given URLs. So every resource will translate into 4 or fewer different services: GET, POST, PUT and DELETE. 
+      
+The advantage of WSDL 2.0 is that it provides a unified syntax for describing both SOAP based and RESTful services. It also has very expressive descriptions where you can define the specific data type, the cardinality and other advanced parameters for each input type. 
+   
+However, WSDL 2.0 requires RESTful services to be viewed and described from a different architectural platform: that of traditional RPC-like services. This forceful conversion negates many of the advantages of the RESTful philosophy. In addition, the expressiveness of the format comes at the price of losing the simplicity achieved by moving to the RESTful paradigm. These verbose files are not the easiest to be written by hand and also impose a maintenance headache. Hence, WSDL files are typically generated with the help of some tools. Further, WSDL descriptions are external files based on XML syntax that the developer has to create and maintain separately. 
+
+\subsection{Web Application Description Language (WADL)}
+Web Application Description Language (WADL)\cite{hadley2006web} is another XML based description language proposed by Sun Microsystems. Unlike WSDL, WADL is created specifically to address the description of web applications, which are usually RESTful services. WADL documents describe resources instead of services but maintain the expressive nature of WSDL. 
+WADL still has some of the concerns associated with WSDL in that they still requires an external XML file to be created and maintained by the developer. It also results in boilerplate code. 
+
+\subsection{hRESTS} 
+hRESTS\cite{kopecky2008hrests} is a Microformat that attempts to fortify the already existing service documentations with semantic annotations in an effort to reuse them as formal resource descriptions. The Microformat uses special purpose class names in the HTML code to annotate different aspects of the associated services. It defines the annotations service, operation, address, method, input and output. A parser can examine the DOM tree of an hRESTS fortified web page to extract the information and produce a formal description. 
+
+hRESTS is a format specifically designed for RESTful services and hence avoids a lot of unnecessary complexities associated with other solutions. It also reduces the efforts required from the developer since he no longer needs to  maintain a separate description of the service.   
+
+One downside with hRESTS is that, despite being specifically designed for REST, it still adheres to an RPC-like service semantics. It is still required to explicitly mention the HTTP methods as the operations involved. Moreover, instead of representing the attributes of a resource, it attempts to represent them as input-output as in traditional services. This results in a lot of unnecessary markup.
+
+\subsection{SA-REST}
+
+Similar to hRESTS, SA-REST\cite{gomadam2010sa} is also a semantic annotation based technique. Unlike hRESTS, it uses the RDFa syntax to describe services, operations and associated properties. The biggest difference between them is that SA-REST has some built in support for semantic annotations whereas hRESTS provides nothing more than a label for the inputs and outputs. SA-REST uses the concept of lifting and lowering schema mappings to translate the data structures in the inputs and outputs to the data structure of an ontology, the grounding schema, to facilitate data integration. It shares much the same advantages and disadvantages as the hRESTS format. In addition, since SA- REST is strictly based on RDF concepts and notations, the developer needs to be well aware of the full spectrum of concepts in RDF.
+
+\subsection{SEREDASj} 
+SEREDASj\cite{lanthaler2011semantic}, a novel description method addresses the problem of resource description from a different perspective. While the other methods resort to the RPC-like semantics of input-operation-output, SEREDASj attempts to describe resources in their native format: as resources with attributes that could be created, retrieved, updated and deleted. This helps to reduce the inherent difference between operation oriented and resource oriented systems. The method also emphasizes on a simple approach that provides a low entry  barrier for developers.
+
+One interesting aspect about SEREDASj is that it uses JSON (JavaScript Object Notation)[15] to describe resources. JSON is an easy and popular markup technique used on the web - especially with RESTful service developers. The advantage is that, the target audience is already familiar with the notation used for markup and can reduce friction when it comes to adoption.
+         
+SEREDASj, however, addresses the documentation and description in the reverse order. You can create the description in JSON first and then generate the documentation from this. This can increase upgrade effort required for existing services and is not very flexible. It is still possible to embed these JSON descriptions into existing documentation but it floats as a data island, separated from the rest of the HTML page. This, again, causes some duplication of data between the documentation and the description and causes a maintenance hurdle. 
 
 \section{Service Description}
 \label{sec:ServiceDescription}
@@ -290,7 +210,7 @@ eg:
 \end{lstlisting}
 \end{enumerate}
 
-\begin{figure}[!t]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=3.5in]{images/rel_semantic.png}
     \caption{Relationship between the semantic annotations}
@@ -361,7 +281,7 @@ The proposed system currently addresses the composition of RESTful web services 
 
 The system uses a web UI at the client side for reading user input. The requests are handled by a server program developed in node.js that accepts requests from multiple client machines and handles them asynchronously. The server program acts as a proxy and is developed to enable the system to handle high volumes of client traffic. The server does the bulk of processing and also allows multiple cross domain HTTP calls with ease, which would otherwise be not possible with a client side implementation because of the same origin policy enforced by the modern web browsers.
 The basic architecture of the system is as illustrated in \ref{fig:sys_arch}.
-\begin{figure}[!t]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=3.5in]{images/sys_arch.png}
     \caption{System architecture}
@@ -371,7 +291,7 @@ The basic architecture of the system is as illustrated in \ref{fig:sys_arch}.
 The system uses a parser module to parse the DOM tree of the annotated API Documentation page and extract the information embedded in it. Based on the information extracted from DOM tree, the web UI presented to the user is populated with a set of API operations that the system identifies and that can be composed. A workbench is presented to the user and a drag-drop based user interface enables the him/her to graphically describe the required composition of web services. Once the graphical design of the mash-up is complete and user submits it, information from the design is converted into an abstract internal representation that is passed to the server. The server now invokes the required API calls asynchronously and composes them as required and produces an HTML formatted output which is the required mash-up. The HTML output is then served back to the client system for the user.
 
 The interaction flow in the system is illustrated in \ref{fig:interaction_flow}.
-\begin{figure*}[!t]
+\begin{figure*}[!ht]
    \centering
     \includegraphics[width=6in] {images/seq.png}
     \caption{Interaction flow sequence}
@@ -380,7 +300,7 @@ The interaction flow in the system is illustrated in \ref{fig:interaction_flow}.
 
 
 \subsection{Server Side Implementation}
-\begin{figure}[!t]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=3.5in]{images/server_arch.png}
     \caption{Server Architecture}
@@ -419,52 +339,8 @@ The immediate future directions we would like to purse this works are
 
 
 % references section
-
-\begin{thebibliography}{10}
-\bibitem{bib:davis}
-    Davis John, Rajasree M. S,
-    \emph{A Framework for the Description, Discovery and Composition of RESTful Semantic Web Services}
-\bibitem{rdfschema}
-	Dan Brickley, R.V. Guha, Brian McBride,
-	\emph{“RDF Vocabulary Description Language 1.0: 	RDF Schema”},
-	W3C Recommendation, 10 February 2004.
-\bibitem{microformat}
-	Microformats -
-	\emph{http://www.microformats.org/.}
-\bibitem{rdfa}
-	Ben Adida, Mark Birbeck,
-	\emph{“RDFa Primer - Bridging the Human and Data Webs”},
-	W3C 	Recommendation, 14 October 2008.
-\bibitem{hrest}
-	Jacek Kopecky, Karthik Gomadam, Tomas Vitvar,
-	\emph{“hRESTS: an HTML Microformat for 	Describing RESTful Web Services,”} IEEE/WIC/ACM International Conference on Web 	Intelligence and Intelligent Agent Technology, 2008.
-\bibitem{sarest}
-	Karthik Gomadam, Ajith Ranabahu, Amit Sheth,
-	\emph{“SA-REST: Semantic Annotation of 	Web Resources”},
-	W3C Member Submission, 05 April 2010.
-\bibitem{semaphobia}
-	Markus Lanthaler, Christian Gütl,
-	\emph{“A Semantic Description Language for RESTful Data 	Services to Combat Semaphobia”},
-	5th IEEE International Conference on Digital 	Ecosystems and Technologies (IEEE DEST 2011), 31 May -3 June 2011, Daejeon, Korea.
-\bibitem{jsplumb}
-	jsPlumb documentation -
-	\emph{http://jsplumbtoolkit.com/doc/home.html}
-\bibitem{api}
-	API Documentation -
-	\emph{http://jsplumbtoolkit.com/apidocs/files/jsPlumb-1.4.1-apidoc.html}
-\bibitem{rdf}
-	W3C's List of Documents about RDF
-	\emph{http://www.w3.org/standards/techs/rdf}
-	http://www.rdfabout.com/
-\bibitem{ift}
-	IFTTT Service
-	\emph{ifttt.com}
-\bibitem{pip}
-	Yahoo! Pipes
-	\emph{http://pipes.yahoo.com}
-
-\end{thebibliography}
-
+\bibliographystyle{plain}
+\bibliography{references}
 
 % that's all folks
 \end{document}

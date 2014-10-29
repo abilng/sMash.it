@@ -1,6 +1,8 @@
 *~
 *.glo
-*.aux
+*.bbl
+*.blg
+*.dvi
 *.toc
 *.acn
 *.ist
