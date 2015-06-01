@@ -1,2 +1,2 @@
 # For ShareLatex
-root_file: report/report.tex
+root_file: ./report/report.tex
